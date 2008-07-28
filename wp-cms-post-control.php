@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 0.3
+Version: Crazy Tortoise BETA
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
 Description: Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc. Requires WP 2.5.0 or above.
 Author: Jonnya
