@@ -1,4 +1,4 @@
-=== WP-CMS Post Control ===Contributors: Owen Winker, Mark Jaquith, Achim Staebler, Brady J. Frey, Jonnya
+=== WP-CMS Post Control ===Contributors: Jonnya, Brady J. Frey, Owen Winker, Mark Jaquith, Achim Staebler
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=contact%40jonnya%2enet&item_name=WP%2dCMS%20Post%20Control%20Plugin%20donation&page_style=PayPal&no_shipping=1&cn=Your%20comments&tax=0&currency_code=GBP&lc=GB&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: post, page, postsRequires at least: 2.5Tested up to: 2.6Stable tag: 0.2Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc.
 == Description ==
