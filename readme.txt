@@ -22,7 +22,7 @@ You can control the display of the following options:* Post - Preview Button*
 = Update =
 
 1. Deactivate Post Control plugin (clears preferences from database on de-activation)
-2. Replace old version of `wp-cms-post-control.php` with new version on server
+2. Replace old version of `wp-cms-post-control` directory with new version on server
 3. Re-activate it on your plugin management page
 4. Configure options through `Settings > Post Control`
 
