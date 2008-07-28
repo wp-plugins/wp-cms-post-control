@@ -17,7 +17,8 @@ WPCMS Post Options v0.1 Jul 2008 - First version, non-public beta testing versio
 
 WPCMS Post Options v0.2 Jul 2008 - First public release
 
-WPCMS Post Options v0.3 Jul 2008 - Codename 'Crazy Tortoise'
+WPCMS Post Options v0.3 Jul 2008 - Codename 'Crazy Tortoise' NOT READY FOR PUBLIC USE JUST YET - STABLE TAG IS v0.2
+
 === CHANGE LOG ===
 
 0.2	- First public release
