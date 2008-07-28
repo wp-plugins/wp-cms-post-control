@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: Crazy Tortoise BETA 0.3
+Version: 0.3
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
 Description: Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc. Requires WP 2.5.0 or above.
 Author: Jonnya
@@ -17,7 +17,7 @@ WPCMS Post Options v0.1 Jul 2008 - First version, non-public beta testing versio
 
 WPCMS Post Options v0.2 Jul 2008 - First public release
 
-WPCMS Post Options v0.3 Jul 2008 - Codename 'Crazy Tortoise' NOT READY FOR PUBLIC USE JUST YET - STABLE TAG IS v0.2
+WPCMS Post Options v0.3 Jul 2008 - Second public release
 
 === CHANGE LOG ===
 
@@ -25,17 +25,8 @@ WPCMS Post Options v0.3 Jul 2008 - Codename 'Crazy Tortoise' NOT READY FOR PUBLI
 	- Changed text
 	- Implemented clean-up of options table on plugin de-activation
 	
-0.3	- Codename 'Crazy Tortoise'
-	- Implemented admin control functionality
+0.3	- Implemented admin control functionality
 	- General tidying
-
-=== CREDITS ===
-
-Inspired by the Clutter Free plugin by Mark Jaquith
-
-The iframe preview removal feature comes courtesy of Owen Winkler's "Kill Preview" plugin http://redalt.com/wiki/Kill+Preview+Plugin
-
-Further work by Brady J. Frey, who called the plugin 'Cloak' - he has now moved onto bigger and brighter things and kindly offered to allow me to continue the development of his good work!
 
 */
 
