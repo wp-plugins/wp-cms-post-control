@@ -33,10 +33,7 @@ The automatic plugin update feature of WordPress works fine with this plugin. If
 You should de-activate the plugin first, as this will ensure that the correct options are set/cleaned-up in the database (especially important as new featues are rolled out to the plugin).
 
 If you have problems, de-activating, then re-activating after update should sort it out for you.== Frequently Asked Questions ==
-
-= Wow, good work - I LOVE this plugin, and you did it all by yourself? =*The simple answer is no*, the code of this plugin started as <a href="http://txfx.net/code/wordpress/clutter-free/">Clutter-Free</a> by <a href="http://txfx.net/">Mark Jaquith</a>, modified and bought up-to-date by <a href="http://www.bradyjfrey.com/">Brady J. Frey</a>, who introduced some magic from Achim Staebler and the 'Kill Preview' functionality by Owen Winkler.
-
-Brady kindly offered to pass over development of his version of the plugin called 'Cloak' to me, so I could maintain it and update it with new features and incorporate it into the WordPress plugin repository for the good of the whole WordPress community. I loved the name 'Cloak', but I intend to extend it to do more than just hide stuff, so thought I'd give it a more descriptive title!= Can you change the options for the admin user/different users? =**YES!** This was introduced in v0.3.
+= Can you change the options for the admin user/different users? =**YES!** This was introduced in v0.3.
 
 = If I hide things like comments, what options get set? =If you hide these options using this plugin, the options default to what you have got your main WordPress options to.
 
@@ -47,15 +44,19 @@ Brady kindly offered to pass over development of his version of the plugin calle
 * Control revisions display
 * Force upload type to default to non-Flash option
 * Control over tinyMCE editor
-* Insert new 'save/publish' buttons in admin, because I don't like the new placement in 2.5+== Screenshots ==
+* Insert new 'save/publish' buttons in admin, because I don't like the new placement in 2.5+
+
+= Wow, good work - I LOVE this plugin, and you did it all by yourself? =*The simple answer is no*, the code of this plugin started as <a href="http://txfx.net/code/wordpress/clutter-free/">Clutter-Free</a> by <a href="http://txfx.net/">Mark Jaquith</a>, modified and bought up-to-date by <a href="http://www.bradyjfrey.com/">Brady J. Frey</a>, who introduced some magic from Achim Staebler and the 'Kill Preview' functionality by Owen Winkler.
+
+Brady kindly offered to pass over development of his version of the plugin called 'Cloak' to me, so I could maintain it and update it with new features and incorporate it into the WordPress plugin repository for the good of the whole WordPress community. I loved the name 'Cloak', but I intend to extend it to do more than just hide stuff, so thought I'd give it a more descriptive title!== Screenshots ==
 
 1. The admin interface, showing what you can control with this plugin.2. An example of a customised write panel - much simpler to use!
 
 == Development Notes ==
 
 *v0.2*
-**First public release (26th July 2008)**
+*First public release (26th July 2008)
 
 *v0.3*
-**Second public release (26th July 2008)**
-* Introduced Admin user control.
+*Second public release (28th July 2008)
+**Introduced Admin user control.
