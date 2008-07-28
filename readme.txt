@@ -31,7 +31,7 @@ Brady kindly offered to pass over development of his version of the plugin calle
 * Control over tinyMCE editor
 * Insert new 'save/publish' buttons in admin, because I don't like the new placement in 2.5+== Screenshots ==
 
-Coming soon!
+Coming very soon!
 
 == Development Notes ==
 
