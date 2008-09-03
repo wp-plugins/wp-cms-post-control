@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 1.01
+Version: 1.02
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
-Description: Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc. Requires WP 2.5.0 or above.
+Description: Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc. Requires WP 2.5.0 or above - tested upto WP 2.6.1
 Author: Jonnya
 Author URI: http://wp-cms.com/
 License: GPL
@@ -19,6 +19,7 @@ v0.3 Jul 2008	- Second public release
 v0.4 Aug 2008	- Development version
 v1.00 Aug 2008	- Development version
 V1.01 Aug 2008	- Third public release
+V1.02 Sept 2008	- Third public release
 
 === CHANGE LOG ===
 
@@ -39,6 +40,8 @@ V1.01 Aug 2008	- Third public release
 		- Control WordPress Autosave
 		
 1.01	- Insert message panel
+
+1.02	- Bug fixes, may improve compatibility with different server configs.
 
 */
 
@@ -145,8 +148,8 @@ function wpcms_post_control_options() {
 		$uploadswitch2 = $uploadstring1;
 		}?>
 
-	<option <?php echo $uploadswitch1; ?> </option>
-	<option <?php echo $uploadswitch2; ?> </option>
+	<option> <?php echo $uploadswitch1; ?> </option>
+	<option> <?php echo $uploadswitch2; ?> </option>
 
 	</select>
 	</td>
@@ -171,8 +174,8 @@ function wpcms_post_control_options() {
 		$revisionsswitch2 = $revisionsstring1;
 		}?>
 
-	<option <?php echo $revisionsswitch1;?> </option>
-	<option <?php echo $revisionsswitch2;?> </option>
+	<option> <?php echo $revisionsswitch1;?> </option>
+	<option> <?php echo $revisionsswitch2;?> </option>
 	
 	</select>
 	</td>
@@ -196,8 +199,8 @@ function wpcms_post_control_options() {
 		$autosaveswitch2 = $autosavestring1;
 		}?>
 
-	<option <?php echo $autosaveswitch1;?> </option>
-	<option <?php echo $autosaveswitch2;?> </option>
+	<option> <?php echo $autosaveswitch1;?> </option>
+	<option> <?php echo $autosaveswitch2;?> </option>
 	
 	</select>
 	<input type="submit" name="Submit" value="<?php _e('Save All Post Control Options','wpcms_post_control'); ?>" />
@@ -230,8 +233,8 @@ function wpcms_post_control_options() {
 		$msg1_ctrlswitch2 = $msg1_ctrlstring1;
 		}?>
 
-	<option <?php echo $msg1_ctrlswitch1;?> </option>
-	<option <?php echo $msg1_ctrlswitch2;?> </option>
+	<option> <?php echo $msg1_ctrlswitch1;?> </option>
+	<option> <?php echo $msg1_ctrlswitch2;?> </option>
 	
 	</select>
 	
@@ -251,8 +254,8 @@ function wpcms_post_control_options() {
 		$msg1_stateswitch2 = $msg1_statestring1;
 		}?>
 		
-	<option <?php echo $msg1_stateswitch1;?> </option>
-	<option <?php echo $msg1_stateswitch2;?> </option>
+	<option> <?php echo $msg1_stateswitch1;?> </option>
+	<option> <?php echo $msg1_stateswitch2;?> </option>
 	
 	</select>
 	
@@ -304,8 +307,8 @@ function wpcms_post_control_options() {
 		$viewswitch2 = $viewstring1;
 		}?>
 
-	<option <?php echo $viewswitch1; ?> </option>
-	<option <?php echo $viewswitch2; ?> </option>
+	<option> <?php echo $viewswitch1; ?> </option>
+	<option> <?php echo $viewswitch2; ?> </option>
 
 	</select>
 
