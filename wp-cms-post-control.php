@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 1.02
+Version: 1.03
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
-Description: Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc. Requires WP 2.5.0 or above - tested upto WP 2.6.1
+Description: Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc. Requires WP 2.5.0 or above, tested upto WP 2.6.1
 Author: Jonnya
 Author URI: http://wp-cms.com/
 License: GPL
@@ -19,7 +19,8 @@ v0.3 Jul 2008	- Second public release
 v0.4 Aug 2008	- Development version
 v1.00 Aug 2008	- Development version
 V1.01 Aug 2008	- Third public release
-V1.02 Sept 2008	- Third public release
+V1.02 Sept 2008	- Forth public release
+V1.03 Sept 2008 - Fifth public release
 
 === CHANGE LOG ===
 
@@ -42,6 +43,9 @@ V1.02 Sept 2008	- Third public release
 1.01	- Insert message panel
 
 1.02	- Bug fixes, may improve compatibility with different server configs.
+
+1.03	- Bug fix to options fields, introduced in 1.02 - sorry!
+		- After comments feedback, changed and documented admin control
 
 */
 
@@ -128,9 +132,11 @@ function wpcms_post_control_options() {
 	<input type="hidden" name="wpcms_post_control_options_update" />
 
 		
-	<table class="form-table">	
+	<table class="form-table">
 	
-	<tr valign="middle">	<th scope="row" style="width:150px; padding:15px;" >Uploader type</th>
+	
+	<tr valign="middle">
+	<th scope="row" style="width:150px; padding:15px;" >Uploader type</th>
 	<td>
 	
 	<select name='what_uploader' id='what_uploader' tabindex='0' style="width:325px; margin-right:20px">
@@ -148,15 +154,16 @@ function wpcms_post_control_options() {
 		$uploadswitch2 = $uploadstring1;
 		}?>
 
-	<option> <?php echo $uploadswitch1; ?> </option>
-	<option> <?php echo $uploadswitch2; ?> </option>
+	<option <?php echo $uploadswitch1; ?> </option>
+	<option <?php echo $uploadswitch2; ?> </option>
 
 	</select>
 	</td>
 	</tr>
 	
 	
-	<tr valign="middle">	<th scope="row" style="width:150px; padding:15px;" >Post/Page Revisions</th>
+	<tr valign="middle">
+	<th scope="row" style="width:150px; padding:15px;" >Post/Page Revisions</th>
 	<td>
 
 	<select name='revisionscontrol' id='revisionscontrol' tabindex='0' style="width:325px; margin-right:20px">
@@ -174,14 +181,15 @@ function wpcms_post_control_options() {
 		$revisionsswitch2 = $revisionsstring1;
 		}?>
 
-	<option> <?php echo $revisionsswitch1;?> </option>
-	<option> <?php echo $revisionsswitch2;?> </option>
+	<option <?php echo $revisionsswitch1;?> </option>
+	<option <?php echo $revisionsswitch2;?> </option>
 	
 	</select>
 	</td>
 	</tr>
 
-	<tr valign="middle">	<th scope="row" style="width:150px; padding:15px;" >Post/Page Autosave</th>
+	<tr valign="middle">
+	<th scope="row" style="width:150px; padding:15px;" >Post/Page Autosave</th>
 	<td>
 
 	<select name='autosavecontrol' id='autosavecontrol' tabindex='0' style="width:325px; margin-right:20px">
@@ -199,8 +207,8 @@ function wpcms_post_control_options() {
 		$autosaveswitch2 = $autosavestring1;
 		}?>
 
-	<option> <?php echo $autosaveswitch1;?> </option>
-	<option> <?php echo $autosaveswitch2;?> </option>
+	<option <?php echo $autosaveswitch1;?> </option>
+	<option <?php echo $autosaveswitch2;?> </option>
 	
 	</select>
 	<input type="submit" name="Submit" value="<?php _e('Save All Post Control Options','wpcms_post_control'); ?>" />
@@ -215,7 +223,8 @@ function wpcms_post_control_options() {
 	<table class="form-table">
 	
 	
-	<tr valign="middle">	<th scope="row" style="width:150px; padding:15px;" >Display</th>
+	<tr valign="middle">
+	<th scope="row" style="width:150px; padding:15px;" >Display</th>
 	<td>
 
 	<select name='msg1_ctrl' id='msg1_ctrl' style="width:325px; margin-right:20px">
@@ -233,8 +242,8 @@ function wpcms_post_control_options() {
 		$msg1_ctrlswitch2 = $msg1_ctrlstring1;
 		}?>
 
-	<option> <?php echo $msg1_ctrlswitch1;?> </option>
-	<option> <?php echo $msg1_ctrlswitch2;?> </option>
+	<option <?php echo $msg1_ctrlswitch1;?> </option>
+	<option <?php echo $msg1_ctrlswitch2;?> </option>
 	
 	</select>
 	
@@ -254,8 +263,8 @@ function wpcms_post_control_options() {
 		$msg1_stateswitch2 = $msg1_statestring1;
 		}?>
 		
-	<option> <?php echo $msg1_stateswitch1;?> </option>
-	<option> <?php echo $msg1_stateswitch2;?> </option>
+	<option <?php echo $msg1_stateswitch1;?> </option>
+	<option <?php echo $msg1_stateswitch2;?> </option>
 	
 	</select>
 	
@@ -263,7 +272,8 @@ function wpcms_post_control_options() {
 	</tr>
 	
 	
-		<tr valign="middle">	<th scope="row" style="width:150px; padding:15px;" >Message Box Title</th>
+		<tr valign="middle">
+	<th scope="row" style="width:150px; padding:15px;" >Message Box Title</th>
 	<td>
 
 			<input name="msg1title" id="msg1title" type="text" style="width: 318px; margin-right:20px" value="<?php $formmsg1txt=get_option('wpcms_post_control_msg1title'); echo $formmsg1txt; ?>" size="50" />
@@ -272,7 +282,8 @@ function wpcms_post_control_options() {
 	</tr>
 
 	
-		<tr valign="middle">	<th scope="row" style="width:150px; padding:15px;" >Message Box Text</th>
+		<tr valign="middle">
+	<th scope="row" style="width:150px; padding:15px;" >Message Box Text</th>
 	<td>
 
 			<input name="msg1text" id="msg1text" type="text" style="width: 318px; margin-right:20px" value="<?php $formmsg1txt=get_option('wpcms_post_control_msg1text'); echo $formmsg1txt; ?>" size="50" />
@@ -289,7 +300,8 @@ function wpcms_post_control_options() {
 	
 	<table class="form-table">	
 
-	<tr valign="middle">	<th scope="row" style="width:150px; padding:15px;" >Admin User Options</th>
+	<tr valign="middle">
+	<th scope="row" style="width:150px; padding:15px;" >Admin User Options</th>
 	<td>
 	
 		<select name='what_admin_sees' id='what_admin_sees' style="width:325px; margin-right:20px">
@@ -297,8 +309,8 @@ function wpcms_post_control_options() {
 		<?php
 		$adminoptions = get_option('wpcms_post_control_admindisplay');
 		$viewstringselected = "selected=\"selected\" ";
-		$viewstring1 = "value='y'>Admin users only get options selected below";
-		$viewstring2 = "value='n'>Admin users see all normal post options";
+		$viewstring1 = "value='y'>Admin users see selected options";
+		$viewstring2 = "value='n'>Admin users see all post options";
 		if ($adminoptions == "y") {
 		$viewswitch1 = $viewstringselected . $viewstring1;
 		$viewswitch2 = $viewstring2;
@@ -307,10 +319,12 @@ function wpcms_post_control_options() {
 		$viewswitch2 = $viewstring1;
 		}?>
 
-	<option> <?php echo $viewswitch1; ?> </option>
-	<option> <?php echo $viewswitch2; ?> </option>
+	<option <?php echo $viewswitch1; ?> </option>
+	<option <?php echo $viewswitch2; ?> </option>
 
 	</select>
+	
+		<p>This controls if Admin level users get to see and control all the standard WordPress options when writing and editing posts and pages (choose 'Admin users see all post options') or just the options and controls you have selected below (choose 'Admin users see selected options'). If you choose 'Admin users see selected options', Admin level users will see what any user below admin level sees when using this plugin.</p>
 
 	</td>
 	</tr>	
@@ -329,7 +343,7 @@ function wpcms_post_control_options() {
 	</form>
 <br />
 <h2><?php _e('WordPress CMS Mods')?></h2>
-	<p>This plugin is bought to you by <a href=http://wp-cms.com>WordPress CMS Mods</a> - making WordPress more like a CMS every day... drop by the website to find out more!</p>
+	<p>This plugin is bought to you by <a href=http://wp-cms.com>WordPress CMS Mods</a> - helping you make WordPress more like a CMS every day... drop by the website to find out more!</p>
 	
 	</div>
 	<?php
