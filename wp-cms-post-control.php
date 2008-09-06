@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 1.03
+Version: 1.11
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
 Description: Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc. Requires WP 2.5.0 or above, tested upto WP 2.6.1
 Author: Jonnya
@@ -21,6 +21,8 @@ v1.00 Aug 2008	- Development version
 V1.01 Aug 2008	- Third public release
 V1.02 Sept 2008	- Forth public release
 V1.03 Sept 2008 - Fifth public release
+V1.1 Sept 2008 - Development version
+V1.11 Sept 2008 - Sixth public release
 
 === CHANGE LOG ===
 
@@ -46,19 +48,26 @@ V1.03 Sept 2008 - Fifth public release
 
 1.03	- Bug fix to options fields, introduced in 1.02 - sorry!
 		- After comments feedback, changed and documented admin control
+		
+1.1		- Found conflict with options variables declaired within a theme functions file
+		- Confilicting PHP variables for reference - 'options' and 'newoptions'
+		- Should solve conflicts with wrongly coded variables from other plugins/themes
+		
+1.11	- Remove redundant preview code
+		- Improved formatting for message box text and title input
 
 */
 
 load_plugin_textdomain('wpcms_post_control','wp-content/plugins');
-$options = array();
+$wpcmspc_options = array();
 
 if (get_option('wpcms_post_control_options')) {
-	$options = get_option('wpcms_post_control_options');
+	$wpcmspc_options = get_option('wpcms_post_control_options');
 }
 
 foreach ( array_keys(wpcms_post_control_ids()) as $css_id => $css_id_name ) {
-	if (!isset($options[$css_id_name]) ) {
-		$options[$css_id_name] = 1;
+	if (!isset($wpcmspc_options[$css_id_name]) ) {
+		$wpcmspc_options[$css_id_name] = 1;
 	}
 }
 
@@ -82,7 +91,7 @@ add_filter('wpcmspc_msg1title_cleaner','wp_filter_kses');
 add_filter('wpcmspc_msg1text_cleaner','wp_filter_kses');
 
 function wpcms_post_control_options() {
-	global $options;
+	global $wpcmspc_options;
 	$css_ids = (array) wpcms_post_control_ids();
 
 	if (isset($_POST['wpcms_post_control_options_update'] ) ) {
@@ -94,17 +103,17 @@ function wpcms_post_control_options() {
 		$autosaveoption = $_POST["autosavecontrol"];
 		//For message box		
 		$msg1ctrloption = $_POST["msg1_ctrl"];
-		$msg1titleoption = apply_filters('wpcmspc_msg1title_cleaner',$_POST["msg1title"]);	
-		$msg1textoption = apply_filters('wpcmspc_msg1text_cleaner',$_POST["msg1text"]);		
+		$msg1titleoption = htmlspecialchars(stripslashes(apply_filters('wpcmspc_msg1title_cleaner',$_POST["msg1title"])));	
+		$msg1textoption = htmlspecialchars(stripslashes(apply_filters('wpcmspc_msg1text_cleaner',$_POST["msg1text"])));		
 		$msg1stateoption = $_POST["msg1_state"];	
 		
-		$newoptions = array();
+		$wpcmspc_newoptions = array();
 
 		foreach ( array_keys($css_ids) as $css_id )
-			$newoptions[$css_id] = ( $_POST['wpcms_post_control'][$css_id] ) ? '1' : '0';
+			$wpcmspc_newoptions[$css_id] = ( $_POST['wpcms_post_control'][$css_id] ) ? '1' : '0';
 
 		add_option('wpcms_post_control_options');
-		update_option('wpcms_post_control_options', $newoptions);
+		update_option('wpcms_post_control_options', $wpcmspc_newoptions);
 		
 		//For extra fields
 		update_option('wpcms_post_control_admindisplay', $admindisplayoption);
@@ -118,7 +127,7 @@ function wpcms_post_control_options() {
 		update_option('wpcms_post_control_msg1state', $msg1stateoption);
 
 
-		$options = get_option('wpcms_post_control_options');
+		$wpcmspc_options = get_option('wpcms_post_control_options');
 		echo '<div id="message" class="updated fade"><p>' . __('Post Control options updated.','wpcms_post_control') . '</p></div>';
 	}
 	?>
@@ -171,7 +180,7 @@ function wpcms_post_control_options() {
 		<?php
 		$revisionsoptions = get_option('wpcms_post_control_revisions');
 		$revisionstringselected = "selected=\"selected\" ";
-		$revisionsstring1 = "value='y'>Keep storing revisions (WordPress default)";
+		$revisionsstring1 = "value='y'>Keep saving revisions (WordPress default)";
 		$revisionsstring2 = "value='n'>Don't save further revisions (keeps previous)";
 		if ($revisionsoptions == "y") {
 		$revisionsswitch1 = $revisionsstringselected . $revisionsstring1;
@@ -333,7 +342,7 @@ function wpcms_post_control_options() {
 	<br />
 	<ul>
 	<?php foreach ( $css_ids as $css_id => $css_id_name ) { ?>
-		<li><input name="wpcms_post_control[<?php echo $css_id; ?>]" id="wpcms_post_control_<?php echo $css_id; ?>" type="checkbox" value="1" <?php checked('1', $options[$css_id]); ?> /><label for="wpcms_post_control_<?php echo $css_id; ?>">
+		<li><input name="wpcms_post_control[<?php echo $css_id; ?>]" id="wpcms_post_control_<?php echo $css_id; ?>" type="checkbox" value="1" <?php checked('1', $wpcmspc_options[$css_id]); ?> /><label for="wpcms_post_control_<?php echo $css_id; ?>">
 			<?php echo $css_id_name; ?></label></li>
 	<?php } ?>
 	</ul>
@@ -342,10 +351,20 @@ function wpcms_post_control_options() {
 	
 	</form>
 <br />
-<h2><?php _e('WordPress CMS Mods')?></h2>
-	<p>This plugin is bought to you by <a href=http://wp-cms.com>WordPress CMS Mods</a> - helping you make WordPress more like a CMS every day... drop by the website to find out more!</p>
+	
+<h2>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=contact%40jonnya%2enet&item_name=WP%2dCMS%20Post%20Control%20Plugin%20donation&page_style=PayPal&no_shipping=1&cn=Your%20comments&tax=0&currency_code=GBP&lc=GB&bn=PP%2dDonationsBF&charset=UTF%2d8">
+<img border="0" src="<?php $plugin_url = WP_CONTENT_URL.'/plugins/'.plugin_basename(dirname(__FILE__)); echo $plugin_url."/images/paypal1.png";?>" width="68" height="34">
+</a>
+<?php _e('Like this plugin?')?>
+</h2>
+
+	<p><b>If you find this plugin useful </b><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=contact%40jonnya%2enet&item_name=WP%2dCMS%20Post%20Control%20Plugin%20donation&page_style=PayPal&no_shipping=1&cn=Your%20comments&tax=0&currency_code=GBP&lc=GB&bn=PP%2dDonationsBF&charset=UTF%2d8" target="_blank" >Buy me a beer or make a safe, secure donation through PayPal (account not required)</a>. Any amount is gladly accepted, and some will go towards the hosting costs of <a href=http://wp-cms.com>WordPress CMS Mods</a>, thanks!</p>
+<p>This plugin is bought to you by <a href=http://wp-cms.com>WordPress CMS Mods</a> - helping you make WordPress more like a CMS every day... drop by the site to find out more!</p>
+	
 	
 	</div>
+	
 	<?php
 }
 
@@ -371,18 +390,19 @@ function wpcms_post_control_ids() {
 		'pageorderdiv' => __('<strong style="color: #2583ad;">Page:</strong> Order', 'wpcms_post_control'),
 		'pageauthordiv' => __('<strong style="color: #2583ad;">Page:</strong> Author', 'wpcms_post_control'),
 		'media-buttons' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Media Upload', 'wpcms_post_control'),
-		'revisionsdiv' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Revisions Menu <b>NOTE:</b> Doesn\'t disable feature, just hides menu', 'wpcms_post_control'),
+		'revisionsdiv' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Revisions Menu', 'wpcms_post_control'),
 		'wp-word-count' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Word Count', 'wpcms_post_control'),
 		'post-body h2' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Advanced Options Title', 'wpcms_post_control'),
+		'submitpost div.side-info' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Editor sidebar shortcuts &amp; \'Press This\' feature', 'wpcms_post_control'),
 		'footer' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Footer', 'wpcms_post_control')
 		);
 	return (array) $wpcms_post_control_ids;
 }
 
 function wpcms_post_control_css() {
-	global $options;
+	global $wpcmspc_options;
 	$css_hidden_ids = array();
-	foreach ( (array) $options as $id => $val ) {
+	foreach ( (array) $wpcmspc_options as $id => $val ) {
 		if ( 0 == $val && wpcms_post_control_validate($id) )
 			$css_hidden_ids[] = '#' . $id;
 	}
@@ -403,26 +423,6 @@ function wpcms_post_control_css() {
 		echo '<!-- ' . __('Post Control plugin: no GUI elements are being hidden', 'wpcms_post_control') . ' -->';}
 		else {echo "\n<!-- " . __('WP-CMS Post Control plugin CSS:', 'wpcms_post_control') . " -->\n<style type='text/css'>\n<!--\n$css_id_string { display: none !important; }\n-->\n</style>\n";}
 	}
-}
-
-
-function wpcms_post_control_kill_iframes_init() {
-	if ( strpos($_SERVER['REQUEST_URI'], 'wp-admin/post.php') === false )
-		return;
-	global $options;
-	if ( isset($options['preview']) && $options['preview'] == '0' )
-		ob_start('wpcms_post_control_kill_preview');
-	if ( isset($options['uploading']) && $options['uploading'] == '0' )
-		ob_start('wpcms_post_control_kill_uploading');
-}
-
-
-function wpcms_post_control_kill_preview($content) {
-	global $post;
-	
-	$content = preg_replace("/<div[^>]*?id=['\"]preview['\"].*?<\/div>/mis", '', $content);
-	$content = preg_replace('/<a href="#preview-post">/mis', '<a href="' . add_query_arg('preview', 'true', get_permalink($post->ID)) . '" onclick="this.target=\'_blank\';">', $content);
-	return $content;
 }
 
 
@@ -455,7 +455,6 @@ function wpcms_post_control_autosave() {
 	}
 }
 
-// NEW MESSAGE CONTROL
 function wpcms_post_control_message1() {
 	if (get_option('wpcms_post_control_msg1ctrl') == 'y') {
 		$msg1title = get_option('wpcms_post_control_msg1title');	
@@ -466,11 +465,11 @@ function wpcms_post_control_message1() {
 	}
 }
 
+
 // GO DO POST CONTROL
 
 add_action('admin_head', 'wpcms_post_control_css');
 add_action('init', create_function('$a=0','load_plugin_textdomain("wpcms_post_control");'), 10);
-add_action('init', 'wpcms_post_control_kill_iframes_init', 11);
 add_filter('flash_uploader', 'wpcms_post_control_flashloader', 5);
 add_action('init', 'wpcms_post_control_postrevisions', 1);
 add_action('wp_print_scripts', 'wpcms_post_control_autosave');
@@ -489,7 +488,7 @@ function set_wpcms_post_control_options() {
 	add_option('wpcms_post_control_revisions','y','Control post revisions');
 	add_option('wpcms_post_control_autosave','y','Control auto saves');
 
-//NEW MESSAGE BOX FUNCTION
+//MESSAGE BOX FUNCTION
 	add_option('wpcms_post_control_msg1ctrl','n','Message 1 display');
 	add_option('wpcms_post_control_msg1title','Type your title here','Message 1 title');
 	add_option('wpcms_post_control_msg1text','Type your message here','Message 1 text');
