@@ -12,9 +12,11 @@ It has since expanded to include more options and cover the latest version of Wo
 - After comments feedback, changed and documented admin control
 
 = 1.1 - Development version (5th September 2008) =
-- Found conflict with options variables declaired within a theme functions file
+- Found potential conflict with options variables declaired within a theme functions file
 - Confilicting PHP variables for reference - 'options' and 'newoptions'
 - Should solve conflicts with wrongly coded variables from other plugins/themes
 		
-= v1.11 - Sixth public release (6th September 2008) =- Remove redundant preview code
+= v1.11 - Sixth public release (6th September 2008) =
+- Option to hide editor sidebar shortcuts and 'Press It' function
+- Remove redundant preview code
 - Improved formatting for message box text and title input
