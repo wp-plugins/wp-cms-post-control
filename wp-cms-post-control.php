@@ -3,7 +3,7 @@
 Plugin Name: WP-CMS Post Control
 Version: 1.11
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
-Description: Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc. Requires WP 2.5.0 or above, tested upto WP 2.6.1
+Description: Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc. Requires WP 2.5.0 or above, tested upto WP 2.6.3
 Author: Jonnya
 Author URI: http://wp-cms.com/
 License: GPL
