@@ -15,7 +15,7 @@ Complete control over write post/pages admin - hide all unwanted items, disable 
 
 The latest version of Post Control covers all features of WordPress 2.7 and is a substantial upgrade over the previous version - including full admin over-ride of hidden panels from users of lower levels.
 
-**IMPORTANT - If you are still using WordPress 2.6.x you can use the previous stable release of this plugin that was designed for full compatibility with WordPress v2.5-2.6.3**
+**IMPORTANT - If you are still using WordPress 2.6.x you can use the <a href="http://downloads.wordpress.org/plugin/wp-cms-post-control.1.11.zip">previous stable release</a> of this plugin that was designed for full compatibility with WordPress v2.5-2.6.3**
 
 With this plugin you can control the following advanced options:
 
@@ -121,7 +121,7 @@ No, you can only put simple text in the message panel for security reasons. Howe
 
 = It's not working! =
 
-**Make sure you are using the latest version!** V1.11 introduced some new coding that should stop any conflicts with variables from other plugins and theme functions (this was not a fault of the Post Control plugin, rather lazy global declarations of global variables in other code).
+**Make sure you are using the latest version!** V1.2 is designed for WordPress 2.7 and above, V1.11 is designed to run on WordPress 2.5 to Wordpress 2.6.3
 
 If it still doesn't work for you, try de-activating, then re-activate the plugin. It behaves well and cleans-up after itself, so this will delete all database options entries created by the plugin and create you a new set. Also you might try hitting refresh in your browser to ensure the plugins CSS control is being used by your browser.
 
