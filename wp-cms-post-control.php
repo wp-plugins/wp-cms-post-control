@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 1.11
+Version: 1.2
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
-Description: Post Control hides unwanted items on the write page and write post pages within WordPress, eg custom fields, trackbacks etc. Requires WP 2.5.0 or above, tested upto WP 2.6.3
+Description: Post Control hides ALL unwanted items on the write page and write post pages, updated to include WP2.7 and above. If you are using below WordPress 2.7 (WordPress 2.5 - 2.6.3) please use WP-CMS Post Control V1.11 available from the plugin homepage or the offical WordPress Plugins directory (click on 'other versions' in the right hand menu).
 Author: Jonnya
 Author URI: http://wp-cms.com/
 License: GPL
@@ -23,6 +23,7 @@ V1.02 Sept 2008	- Forth public release
 V1.03 Sept 2008 - Fifth public release
 V1.1 Sept 2008 - Development version
 V1.11 Sept 2008 - Sixth public release
+V1.2 Dec 2008 - Seventh public release
 
 === CHANGE LOG ===
 
@@ -55,6 +56,15 @@ V1.11 Sept 2008 - Sixth public release
 		
 1.11	- Remove redundant preview code
 		- Improved formatting for message box text and title input
+		
+1.2		- WordPress 2.7 compatibility build, re-write plugin controls to support new 'Crazy Horse' interface
+		- Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i> 
+		- Changed option array function for more control
+		- Changed formatting of plugin options buttons
+		
+		=== TO DO ===
+
+		- Fix HTMLSpecChar so punctuation works instead of inserting slashes!!
 
 */
 
@@ -103,8 +113,8 @@ function wpcms_post_control_options() {
 		$autosaveoption = $_POST["autosavecontrol"];
 		//For message box		
 		$msg1ctrloption = $_POST["msg1_ctrl"];
-		$msg1titleoption = htmlspecialchars(stripslashes(apply_filters('wpcmspc_msg1title_cleaner',$_POST["msg1title"])));	
-		$msg1textoption = htmlspecialchars(stripslashes(apply_filters('wpcmspc_msg1text_cleaner',$_POST["msg1text"])));		
+		$msg1titleoption = apply_filters('wpcmspc_msg1title_cleaner',$_POST["msg1title"]);	
+		$msg1textoption = apply_filters('wpcmspc_msg1text_cleaner',$_POST["msg1text"]);		
 		$msg1stateoption = $_POST["msg1_state"];	
 		
 		$wpcmspc_newoptions = array();
@@ -133,8 +143,8 @@ function wpcms_post_control_options() {
 	?>
 
 	<div class="wrap">
+		<div id="icon-options-general" class="icon32"><br /></div>
 		<h2><?php _e('WP-CMS Post Control Administration')?></h2>
-		<br />
 	<h2><?php _e('General Options')?></h2>
 	<p>These only disable the following post/page functions, they don't delete existing revisions or options from your database.<br />You can re-enable these functions anytime and they will continue to work just fine!</p>
 	<form name="wpcms_post_control_options" method="post">
@@ -220,7 +230,7 @@ function wpcms_post_control_options() {
 	<option <?php echo $autosaveswitch2;?> </option>
 	
 	</select>
-	<input type="submit" name="Submit" value="<?php _e('Save All Post Control Options','wpcms_post_control'); ?>" />
+<input type="submit" class="button" name="Submit" value="<?php _e('Save All Post Control Options','wpcms_post_control'); ?>" />
 	</td>
 	</tr>
 	
@@ -297,8 +307,7 @@ function wpcms_post_control_options() {
 
 			<input name="msg1text" id="msg1text" type="text" style="width: 318px; margin-right:20px" value="<?php $formmsg1txt=get_option('wpcms_post_control_msg1text'); echo $formmsg1txt; ?>" size="50" />
 
-	<input type="submit" name="Submit" value="<?php _e('Save All Post Control Options','wpcms_post_control'); ?>" />
-	</td>
+			<input type="submit" class="button" name="Submit" value="<?php _e('Save All Post Control Options','wpcms_post_control'); ?>" />	</td>
 	</tr>
 
 
@@ -346,22 +355,15 @@ function wpcms_post_control_options() {
 			<?php echo $css_id_name; ?></label></li>
 	<?php } ?>
 	</ul>
-	
-	<p class="submit"><input type="submit" name="Submit" value="<?php _e('Save All Post Control Options','wpcms_post_control'); ?>" /></p>
-	
+	<br />
+	<input type="submit" class="button-primary" name="Submit" value="<?php _e('Save All Post Control Options','wpcms_post_control'); ?>" />	
 	</form>
 <br />
 	
 <h2>
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=contact%40jonnya%2enet&item_name=WP%2dCMS%20Post%20Control%20Plugin%20donation&page_style=PayPal&no_shipping=1&cn=Your%20comments&tax=0&currency_code=GBP&lc=GB&bn=PP%2dDonationsBF&charset=UTF%2d8">
-<img border="0" src="<?php $plugin_url = WP_CONTENT_URL.'/plugins/'.plugin_basename(dirname(__FILE__)); echo $plugin_url."/images/paypal1.png";?>" width="68" height="34">
-</a>
-<?php _e('Like this plugin?')?>
+<?php _e('Harness the publishing power of WordPress')?>
 </h2>
-
-	<p><b>If you find this plugin useful </b><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=contact%40jonnya%2enet&item_name=WP%2dCMS%20Post%20Control%20Plugin%20donation&page_style=PayPal&no_shipping=1&cn=Your%20comments&tax=0&currency_code=GBP&lc=GB&bn=PP%2dDonationsBF&charset=UTF%2d8" target="_blank" >Buy me a beer or make a safe, secure donation through PayPal (account not required)</a>. Any amount is gladly accepted, and some will go towards the hosting costs of <a href=http://wp-cms.com>WordPress CMS Mods</a>, thanks!</p>
-<p>This plugin is bought to you by <a href=http://wp-cms.com>WordPress CMS Mods</a> - helping you make WordPress more like a CMS every day... drop by the site to find out more!</p>
-	
+<p>This plugin is bought to you by <a href=http://wp-cms.com>WordPress CMS Modifications</a> - helping you make WordPress more like a CMS every day! Drop by the site to find out more about WordPress and support the best publishing platform on the Internet.</p>
 	
 	</div>
 	
@@ -372,30 +374,31 @@ function wpcms_post_control_ids() {
 	global $wpcms_post_control_ids;
 	if ( !isset($wpcms_post_control_ids) )
 		$wpcms_post_control_ids = array(
-		'previewview' => __('<strong style="color: #2583ad;">Post:</strong> Preview Button', 'wpcms_post_control'),
-		'edit-slug-box' => __('<strong style="color: #2583ad;">Post:</strong> Permalink', 'wpcms_post_control'),
-		'tagsdiv' => __('<strong style="color: #2583ad;">Post:</strong> Tags', 'wpcms_post_control'),
-		'categorydiv' => __('<strong style="color: #2583ad;">Post:</strong> Categories', 'wpcms_post_control'),
-		'postexcerpt' => __('<strong style="color: #2583ad;">Post:</strong> Excerpt', 'wpcms_post_control'),
-		'trackbacksdiv' => __('<strong style="color: #2583ad;">Post:</strong> Trackbacks', 'wpcms_post_control'),
-		'postcustom' => __('<strong style="color: #2583ad;">Post:</strong> Custom Fields', 'wpcms_post_control'),
-		'commentstatusdiv' => __('<strong style="color: #2583ad;">Post:</strong> Comments & Pings', 'wpcms_post_control'),
-		'passworddiv' => __('<strong style="color: #2583ad;">Post:</strong> Password Protect This Post', 'wpcms_post_control'),
-		'authordiv' => __('<strong style="color: #2583ad;">Post:</strong> Author', 'wpcms_post_control'),
-		'pagecustomdiv' => __('<strong style="color: #2583ad;">Page:</strong> Custom Fields', 'wpcms_post_control'),
-		'pagecommentstatusdiv' => __('<strong style="color: #2583ad;">Page:</strong> Comments &amp; Pings', 'wpcms_post_control'),
-		'pagepassworddiv' => __('<strong style="color: #2583ad;">Page:</strong> Password Protect This Page', 'wpcms_post_control'),
-		'pageparentdiv' => __('<strong style="color: #2583ad;">Page:</strong> Parent', 'wpcms_post_control'),
-		'pagetemplatediv' => __('<strong style="color: #2583ad;">Page:</strong> Template', 'wpcms_post_control'),
-		'pageorderdiv' => __('<strong style="color: #2583ad;">Page:</strong> Order', 'wpcms_post_control'),
-		'pageauthordiv' => __('<strong style="color: #2583ad;">Page:</strong> Author', 'wpcms_post_control'),
-		'media-buttons' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Media Upload', 'wpcms_post_control'),
-		'revisionsdiv' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Revisions Menu', 'wpcms_post_control'),
-		'wp-word-count' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Word Count', 'wpcms_post_control'),
-		'post-body h2' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Advanced Options Title', 'wpcms_post_control'),
-		'submitpost div.side-info' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Editor sidebar shortcuts &amp; \'Press This\' feature', 'wpcms_post_control'),
-		'footer' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Footer', 'wpcms_post_control')
+		'#preview-action' => __('<strong style="color: #2583ad;">Post:</strong> Preview button', 'wpcms_post_control'),
+		'#edit-slug-box' => __('<strong style="color: #2583ad;">Post:</strong> Permalink', 'wpcms_post_control'),
+		'#tagsdiv' => __('<strong style="color: #2583ad;">Post:</strong> Tags', 'wpcms_post_control'),
+		'#categorydiv' => __('<strong style="color: #2583ad;">Post:</strong> Categories', 'wpcms_post_control'),
+		'#postexcerpt' => __('<strong style="color: #2583ad;">Post:</strong> Excerpt', 'wpcms_post_control'),
+		'#trackbacksdiv' => __('<strong style="color: #2583ad;">Post:</strong> Trackbacks', 'wpcms_post_control'),
+		'#postcustom' => __('<strong style="color: #2583ad;">Post:</strong> Custom fields', 'wpcms_post_control'),
+		'#commentstatusdiv' => __('<strong style="color: #2583ad;">Post:</strong> Discussion', 'wpcms_post_control'),
+		'p.meta-options' => __('<strong style="color: #2583ad;">Post:</strong> Comment & ping options', 'wpcms_post_control'),
+		'#pagecustomdiv' => __('<strong style="color: #2583ad;">Page:</strong> Custom fields', 'wpcms_post_control'),
+		'#pagecommentstatusdiv' => __('<strong style="color: #2583ad;">Page:</strong> Discussion', 'wpcms_post_control'),
+		'#pagecommentstatusdiv div.inside p label.selectit' => __('<strong style="color: #2583ad;">Page:</strong> Comment & ping options', 'wpcms_post_control'),
+		'#pageparentdiv' => __('<strong style="color: #2583ad;">Page:</strong> Attributes', 'wpcms_post_control'),
+		'#visibility' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Publish visibility', 'wpcms_post_control'),
+		'.misc-pub-section-last' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Publish date', 'wpcms_post_control'),
+		'#media-buttons' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Media upload', 'wpcms_post_control'),
+		'#revisionsdiv' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Revisions menu', 'wpcms_post_control'),
+		'#wp-word-count' => __('<strong style="color: #d54e21;">Post &amp; Page:</strong> Word count', 'wpcms_post_control'),
+		'#screen-meta' => __('<strong style="color: #66CC00;">WORDPRESS 2.7&#43; Interface:</strong> Screen options dropdown', 'wpcms_post_control'),
+		'#favorite-actions' => __('<strong style="color: #66CC00;">WORDPRESS 2.7&#43; Interface:</strong> Header new post/page etc dropdown', 'wpcms_post_control'),
+		'#dashboard_quick_press' => __('<strong style="color: #66CC00;">WORDPRESS 2.7&#43; Interface:</strong> Dashboard QuickPress', 'wpcms_post_control'),
+		'#footer' => __('<strong style="color: #66CC00;">WORDPRESS 2.7&#43; Interface:</strong> Footer', 'wpcms_post_control'),
 		);
+		
+		
 	return (array) $wpcms_post_control_ids;
 }
 
@@ -404,7 +407,8 @@ function wpcms_post_control_css() {
 	$css_hidden_ids = array();
 	foreach ( (array) $wpcmspc_options as $id => $val ) {
 		if ( 0 == $val && wpcms_post_control_validate($id) )
-			$css_hidden_ids[] = '#' . $id;
+			//$css_hidden_ids[] = '#' . $id; HARDCODING HASH IN NOW FOR MORE CONTROL
+			$css_hidden_ids[] = $id;
 	}
 	if ( !$css_hidden_ids ) {
 		echo '<!-- ' . __('Post Control plugin: no GUI elements are being hidden', 'wpcms_post_control') . ' -->';
@@ -488,10 +492,10 @@ function set_wpcms_post_control_options() {
 	add_option('wpcms_post_control_revisions','y','Control post revisions');
 	add_option('wpcms_post_control_autosave','y','Control auto saves');
 
-//MESSAGE BOX FUNCTION
+//MESSAGE BOX 1
 	add_option('wpcms_post_control_msg1ctrl','n','Message 1 display');
-	add_option('wpcms_post_control_msg1title','Type your title here','Message 1 title');
-	add_option('wpcms_post_control_msg1text','Type your message here','Message 1 text');
+	add_option('wpcms_post_control_msg1title','Type your message box title here','Message 1 title');
+	add_option('wpcms_post_control_msg1text','<b>Bold</b> and <i>italic</i> can be used','Message 1 text');
 	add_option('wpcms_post_control_msg1state','open','Message 1 box state');
 }
 
@@ -502,7 +506,7 @@ function unset_wpcms_post_control_options() {
 	delete_option('wpcms_post_control_revisions');
 	delete_option('wpcms_post_control_autosave');
 
-//NEW MESSAGE BOX FUNCTION
+// MESSAGE BOX 1
 	delete_option('wpcms_post_control_msg1ctrl');
 	delete_option('wpcms_post_control_msg1title');
 	delete_option('wpcms_post_control_msg1text');
