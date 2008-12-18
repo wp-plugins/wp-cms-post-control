@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=conta
 Tags: cms, post, page, revisions, autosave, disable revision, disable autosave
 Requires at least: 2.7
 Tested up to: 2.7
-Stable tag: 1.7
+Stable tag: 1.2
 
 Complete control over write post/pages admin - hide all unwanted items, disable flash upload, post revisions, autosave & add a personal message.
 
