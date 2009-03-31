@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 1.2
+Version: 1.21
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
-Description: Post Control hides ALL unwanted items on the write page and write post pages, updated to include WP2.7 and above. If you are using below WordPress 2.7 (WordPress 2.5 - 2.6.3) please use WP-CMS Post Control V1.11 available from the plugin homepage or the offical WordPress Plugins directory (click on 'other versions' in the right hand menu).
+Description: Post Control hides unwanted items on the write page and write post pages, and other post related controls. Updated to include WP2.7 and above.
 Author: Jonnya
 Author URI: http://wp-cms.com/
 License: GPL
@@ -14,16 +14,17 @@ License: GPL
 === VERSION HISTORY ===
 
 v0.1 Jul 2008	- First version, non-public beta testing version
-v0.2 Jul 2008	- First public release
-v0.3 Jul 2008	- Second public release
+v0.2 Jul 2008	- Public release 1
+v0.3 Jul 2008	- Public release 2
 v0.4 Aug 2008	- Development version
 v1.00 Aug 2008	- Development version
-V1.01 Aug 2008	- Third public release
-V1.02 Sept 2008	- Forth public release
-V1.03 Sept 2008 - Fifth public release
-V1.1 Sept 2008 - Development version
-V1.11 Sept 2008 - Sixth public release
-V1.2 Dec 2008 - Seventh public release
+V1.01 Aug 2008	- Public release 3
+V1.02 Sept 2008	- Public release 4
+V1.03 Sept 2008	- Public release 5
+V1.1 Sept 2008	- Development version
+V1.11 Sept 2008	- Public release 6
+V1.2 Dec 2008	- Public release 7
+V1.21 Mar 2009	- Public release 8
 
 === CHANGE LOG ===
 
@@ -61,6 +62,8 @@ V1.2 Dec 2008 - Seventh public release
 		- Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i> 
 		- Changed option array function for more control
 		- Changed formatting of plugin options buttons
+		
+1.21	- WordPress 2.7 author control
 		
 		=== TO DO ===
 
@@ -383,6 +386,7 @@ function wpcms_post_control_ids() {
 		'#postcustom' => __('<strong style="color: #2583ad;">Post:</strong> Custom fields', 'wpcms_post_control'),
 		'#commentstatusdiv' => __('<strong style="color: #2583ad;">Post:</strong> Discussion', 'wpcms_post_control'),
 		'p.meta-options' => __('<strong style="color: #2583ad;">Post:</strong> Comment & ping options', 'wpcms_post_control'),
+		'#authordiv' => __('<strong style="color: #2583ad;">Post:</strong> Author', 'wpcms_post_control'),
 		'#pagecustomdiv' => __('<strong style="color: #2583ad;">Page:</strong> Custom fields', 'wpcms_post_control'),
 		'#pagecommentstatusdiv' => __('<strong style="color: #2583ad;">Page:</strong> Discussion', 'wpcms_post_control'),
 		'#pagecommentstatusdiv div.inside p label.selectit' => __('<strong style="color: #2583ad;">Page:</strong> Comment & ping options', 'wpcms_post_control'),

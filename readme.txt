@@ -4,8 +4,8 @@ Contributors: CMSBuilder Jonnya PeteInnes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=contact%40jonnya%2enet&item_name=WP%2dCMS%20Post%20Control%20Plugin%20donation&page_style=PayPal&no_shipping=1&cn=Your%20comments&tax=0&currency_code=GBP&lc=GB&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: cms, post, page, revisions, autosave, disable revision, disable autosave
 Requires at least: 2.7
-Tested up to: 2.7
-Stable tag: 1.2
+Tested up to: 2.7.1
+Stable tag: 1.21
 
 Complete control over write post/pages admin - hide all unwanted items, disable flash upload, post revisions, autosave & add a personal message.
 
@@ -195,3 +195,6 @@ It has since expanded to include more options and cover the latest version of Wo
 - Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i> 
 - Changed option array function for more control
 - Changed formatting of plugin options buttons
+
+= v1.21 - Eighth public release (31st March 2009) =
+- WordPress 2.7 author control
