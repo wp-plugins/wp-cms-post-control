@@ -44,6 +44,7 @@ You can control the display of the following post options:
 * Post: Custom fields
 * Post: Discussion
 * Post: Comment & ping options
+* Post: Author
 
 You can control the display of the following page options:
 
