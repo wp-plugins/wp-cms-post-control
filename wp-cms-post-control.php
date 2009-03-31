@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 1.21
+Version: 1.2.1
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
 Description: Post Control hides unwanted items on the write page and write post pages, and other post related controls. Updated to include WP2.7 and above.
 Author: Jonnya
@@ -24,7 +24,7 @@ V1.03 Sept 2008	- Public release 5
 V1.1 Sept 2008	- Development version
 V1.11 Sept 2008	- Public release 6
 V1.2 Dec 2008	- Public release 7
-V1.21 Mar 2009	- Public release 8
+V1.2.1 Mar 2009	- Public release 8
 
 === CHANGE LOG ===
 
@@ -63,7 +63,7 @@ V1.21 Mar 2009	- Public release 8
 		- Changed option array function for more control
 		- Changed formatting of plugin options buttons
 		
-1.21	- WordPress 2.7 author control
+1.2.1	- WordPress 2.7 author control
 		
 		=== TO DO ===
 
