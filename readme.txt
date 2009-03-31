@@ -196,5 +196,5 @@ It has since expanded to include more options and cover the latest version of Wo
 - Changed option array function for more control
 - Changed formatting of plugin options buttons
 
-= v1.21 - Eighth public release (31st March 2009) =
+= v1.2.1 - Eighth public release (31st March 2009) =
 - WordPress 2.7 author control
