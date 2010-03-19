@@ -9,7 +9,7 @@ Hide unwanted items from different user levels when they are writing and editing
 
 == Description ==
 
-**Post Control** from <a href="http://jonnya.net/">Jonny</a> at <a href="http://wp-cms.com/">WordPress CMS Modifications</a> builds upon the new controls in WordPress 2.9 to give you complete control over your write options **for every user level/role**. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content. This helps you use WordPress more like a CMS, alowing you to totally customise what your users see and use.
+**Post Control** from <a href="http://wp-cms.com/">WordPress CMS Modifications</a> builds upon the new controls in WordPress 2.9 to give you complete control over your write options **for every user level/role**. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content. This helps you use WordPress more like a CMS, alowing you to totally customise what your users see and use.
 
 Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options for instance - now you can decide what users can see and use.
 
@@ -40,13 +40,11 @@ You can control the display of the following global post/page options:
 * Post/Page Media upload
 * Many more to come - including text editor and core function controls!
 
-The original codebase of this plugin began as a plugin build by Brady J. Frey. I maintained this version for some time, but version 2 is a complete re-write from the ground up. All new code written purely by me.
-
 == Installation ==
 
 = First time install =
 
-1. Get the latest version of this plugin at the <a href="ordpress.org/extend/plugins/wp-cms-post-control/">official WordPress plugin directory</a>.
+1. Get the latest version of this plugin at the <a href="http://wordpress.org/extend/plugins/wp-cms-post-control/">official WordPress plugin directory</a>.
 2. Decompress .zip file, retaining file structure.
 3. Upload directory `wp-cms-post-control` and all containing files to the `/wp-content/plugins/` directory
 4. Activate the plugin through the 'Plugins' menu in WordPress
@@ -101,7 +99,7 @@ I've got quite a few things I'd like to do with this plugin, but don't hold your
 
 = Wow, good work - I LOVE this plugin, and you did it all by yourself? =
 
-What began as inherited code has now been completely re-written in v2.0 to use new methods and best practices in WordPress plugin development.
+What began as inherited code has now been completely re-written in v2.0 to use new methods and best practices in WordPress plugin development. The first codebase began as a plugin build by Brady J. Frey. I maintained this version for some time, but version 2 is a complete re-write from the ground up.
 
 == Screenshots ==
 
