@@ -52,14 +52,9 @@ You can control the display of the following global post/page options:
 
 = Update existing install =
 
-1. Deactivate Post Control plugin (clears preferences from database on de-activation)
-2. Replace old version of `wp-cms-post-control` directory with new version on server
-3. Re-activate it on your plugin management page
-4. Configure options through `Settings > Post Control`
-
-= WordPress automatic update =
-
 The automatic plugin update feature of WordPress works fine with this plugin. If your server supports it you should certainly use this as it's the easiest way to keep your plugins up-to-date.
+
+You should go to the options page and re-save your Post Control options to refresh the settings after an update.
 
 == Frequently Asked Questions ==
 
