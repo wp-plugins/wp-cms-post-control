@@ -46,7 +46,7 @@ The original codebase of this plugin began as a plugin build by Brady J. Frey. I
 
 = First time install =
 
-1. Get the latest version of this plugin at the <a href="ordpress.org/extend/plugins/wp-cms-post-control/">official WordPress plugin directory</a>.
+1. Get the latest version of this plugin at the <a href="http://wordpress.org/extend/plugins/wp-cms-post-control/">official WordPress plugin directory</a>.
 2. Decompress .zip file, retaining file structure.
 3. Upload directory `wp-cms-post-control` and all containing files to the `/wp-content/plugins/` directory
 4. Activate the plugin through the 'Plugins' menu in WordPress
