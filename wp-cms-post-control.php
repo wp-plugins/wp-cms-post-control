@@ -1,482 +1,184 @@
-<?php
-/*
-Plugin Name: WP-CMS Post Control
-Version: 2.0
-Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
-Description: Hides unwanted items within the write/edit page and post admin area, including individual controls for different user levels.
-Author: Jonny Allbut - Jonnya Creative WordPress Consultant
-Author URI: http://jonnya.net
-License: GPL
-*/
+=== WP-CMS Post Control ===
+Contributors: Jonnyauk, CMSBuilder 
+Tags: post, page, metabox, cms
+Requires at least: 2.8.2
+Tested up to: 3.0-beta
+Stable tag: 2.0
 
-/*
+Hide unwanted items from different user levels when they are writing and editing posts and pages.
 
-=== VERSION HISTORY ===
+== Description ==
 
-0.1 Jul 2008	- First version, non-public beta testing version
-0.2 Jul 2008	- Public release 1
-0.3 Jul 2008	- Public release 2
-0.4 Aug 2008	- Development version
-1.00 Aug 2008	- Development version
-1.01 Aug 2008	- Public release 3
-1.02 Sept 2008	- Public release 4
-1.03 Sept 2008	- Public release 5
-1.1 Sept 2008	- Development version
-1.11 Sept 2008	- Public release 6
-1.2 Dec 2008	- Public release 7
-1.2.1 Mar 2009	- Public release 8
-2.0 Mar 2010	- Public release 9
+**Post Control** from <a href="http://jonnya.net/">Jonny</a> at <a href="http://wp-cms.com/">WordPress CMS Modifications</a> builds upon the new controls in WordPress 2.9 to give you complete control over your write options **for every user level/role**. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content. This helps you use WordPress more like a CMS, alowing you to totally customise what your users see and use.
 
-=== CHANGE LOG ===
+Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options for instance - now you can decide what users can see and use.
 
-0.2		- Changed text
-		- New clean-up of options table on plugin de-activation
-	
-0.3		- New admin control functionality
-		- General tidying
-	
-0.4		- Option to select uploader
-		- Option to hide revisions control
-		- Option to hide word count
-		- Option to hide Advanced Options header
-		- Fixed page custom field control
-		- Redesigned admin page
-	
-1.00	- Control WordPress Revisions
-		- Control WordPress Autosave
-		
-1.01	- Insert message panel
+**New to version 2** is the ability to hide different items for each user role - administrator, editor, author and even contributor. Now you can decide and control every aspect of your users experience when editing content - whatever their role. 
 
-1.02	- Bug fixes, may improve compatibility with different server configs.
+An example would be where you only wanted administrators and editors to be able to see and change the excerpt or commenting options! With this plugin you can control this and much more.
 
-1.03	- Bug fix to options fields, introduced in 1.02 - sorry!
-		- After comments feedback, changed and documented admin control
-		
-1.1		- Found conflict with options variables declaired within a theme functions file
-		- Confilicting PHP variables for reference - 'options' and 'newoptions'
-		- Should solve conflicts with wrongly coded variables from other plugins/themes
-		
-1.11	- Remove redundant preview code
-		- Improved formatting for message box text and title input
-		
-1.2		- WordPress 2.7 compatibility build, re-write plugin controls to support new 'Crazy Horse' interface
-		- Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i> 
-		- Changed option array function for more control
-		- Changed formatting of plugin options buttons
-		
-1.2.1	- WordPress 2.7 author control
+You can control the display of the following post options for each role level:
 
-2.0		- Complete re-write of codebase = major efficiency improvements
-		- New code eliminates all previous reported user issues
-		- WordPress 2.9.2 compatibility updates
-		- Introduced multi-user level controls
-		- New remove media upload control
+* Post Tags
+* Post Categories
+* Post Excerpt
+* Post Trackbacks
+* Post Custom fields
+* Post Discussion
+* Post Comment & ping options
+* Post Author
 
-*/
+You can control the display of the following page options:
 
+* Page Custom fields
+* Page Discussion
+* Page Comment & ping options
+* Page Attributes
 
-/**
-* Setup Post Control
-*
-* @since 2.001
-* @lastupdate 2.001
-* 
-*/
-function wpcms_pcontrol_init(){
-	register_setting( 'wpcms_pcontrol_options', 'wpcms_pcontrolopts', 'wpcms_pcontrol_validate' );
-}
+You can control the display of the following global post/page options:
 
+* Post/Page Media upload
+* Many more to come - including text editor and core function controls!
 
-/**
-* Run Post Control
-*
-* @since 2.001
-* @lastupdate 2.003
-* 
-*/
-function wpcms_pcontrol_run() {
+The original codebase of this plugin began as a plugin build by Brady J. Frey. I maintained this version for some time, but version 2 is a complete re-write from the ground up. All new code written purely by me.
 
-	include("inc/wp-cms-class-pcontrol.php");
-	$wpcms_pcontrol_doit = new wpcms_pcontrol;
+== Installation ==
 
-	// Just load what we need when we need it
-	
-	add_action('load-page.php', array($wpcms_pcontrol_doit, 'pccore_page'));
-	add_action('load-page-new.php', array($wpcms_pcontrol_doit, 'pccore_page'));
-	add_action('load-post.php', array($wpcms_pcontrol_doit, 'pccore_post'));
-	add_action('load-post-new.php', array($wpcms_pcontrol_doit, 'pccore_post'));
-}
+= First time install =
 
+1. Get the latest version of this plugin at the <a href="http://wordpress.org/extend/plugins/wp-cms-post-control/">official WordPress plugin directory</a>.
+2. Decompress .zip file, retaining file structure.
+3. Upload directory `wp-cms-post-control` and all containing files to the `/wp-content/plugins/` directory
+4. Activate the plugin through the 'Plugins' menu in WordPress
+5. Configure options through `Settings > Post Control`
 
-/**
-* Adds options page
-*
-* @since 2.001
-* @lastupdate 2.003
-* 
-*/
-function wpcms_pcontrol_add_page() {
-	// Access level is set here - level 10 = admin only, could change if required!
-	add_options_page('WP-CMS Post Control Options', 'Post Control', 10, 'wpcms_pcontrol', 'wpcms_pcontrol_do_page');
-}
+= Update existing install =
 
+1. Deactivate Post Control plugin (clears preferences from database on de-activation)
+2. Replace old version of `wp-cms-post-control` directory with new version on server
+3. Re-activate it on your plugin management page
+4. Configure options through `Settings > Post Control`
 
-/**
-* Add link to plugins listing to jump to admin
-*
-* @since 2.005
-* @lastupdate 2.007
-* 
-*/
-function wpcms_pcontrol_meta($links, $file) {
- 
-	$plugin = plugin_basename(__FILE__);
- 
-	// create link
-	if ($file == $plugin) {
-		return array_merge(
-			$links,
-			array( sprintf( '<a href="options-general.php?page=wpcms_pcontrol">Post Control settings</a>', $plugin, __('Post Control Settings') ) )
-		);
-	}
-	return $links;
-}
+= WordPress automatic update =
 
+The automatic plugin update feature of WordPress works fine with this plugin. If your server supports it you should certainly use this as it's the easiest way to keep your plugins up-to-date.
 
-/**
-* Options page content
-*
-* @since 2.005
-* @lastupdate 2.015
-* 
-*/
-function wpcms_pcontrol_do_page() { ?>
-	
-	<div class="wrap">
-		<div id="icon-options-general" class="icon32"><br /></div>
-		<h2>WP-CMS Post Control</h2>
-					
-		<form method="post" action="options.php">
-			<?php
-			//Output nonce, action, and option_page fields for a settings page
-			// @param string $option_group A settings group name. IMPORTANT - This should match the group name used in register_setting()
-			settings_fields('wpcms_pcontrol_options');
-			?>
+== Frequently Asked Questions ==
 
-			<p class="submit">
-			<input type="submit" class="button-primary" value="<?php _e('Save Post Control options') ?>" />
-			</p>
-			
-			<?php $options = get_option('wpcms_pcontrolopts'); ?>
-				
-			<div id="icon-themes" class="icon32"><br /></div>
-			<h2>Page Controls</h2>
-			<p>Check option <strong>to hide create/edit page controls </strong> available to different <a href="http://codex.wordpress.org/Roles_and_Capabilities" title="WordPress roles and capabilities">user roles</a>.</p>
-			<p>Page creation and editing is only available to administrator and editor level users.</p>
+= I used versions of this plugin prior to v2 and sometimes the controls wouldn't re-appear once deactivated. Have you fixed this? =
 
-	
-			<table class="form-table">
-			
-				<?php
-				$mypagecontrols = array(
-				'Attributes' => 'pageparentdiv', 
-				'Author' => 'pageauthordiv', 
-				'Custom Fields' => 'postcustom',
-				'Discussion' => 'commentstatusdiv', 
-				'Revisions' => 'revisionsdiv'
-				);		
-	
-				//Generate form from array
-				foreach($mypagecontrols as $key => $value) { ?>		
-				
-				<tr>
-					<th scope="row"><?php echo $key; ?></th>
-					<td>
-					<fieldset>
-					<legend class="screen-reader-text"><span><?php echo $key; ?></span></legend>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_page_administrator]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_page_administrator]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_page_administrator']); ?> />
-						Administrator
-						</label>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_page_editor]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_page_editor]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_page_editor']); ?> />
-						Editor
-						</label>
-						
-					</fieldset></td>
-				</tr>
-				
-				<?php 
-				}
-				?>
-			
-			</table>
+**YES!** Version 2 (and above) is a complete re-write, using a new method to remove the controls. Because of this, these issues are now completely resolved.
 
-			
-			<div id="icon-themes" class="icon32"><br /></div>
-			<h2>Post Controls</h2>
-			<p>Check option <strong>to hide create/edit post controls </strong> available to different <a href="http://codex.wordpress.org/Roles_and_Capabilities" title="WordPress roles and capabilities">user roles</a>.</p>
-	
-			<table class="form-table">
-			
-				<?php
-				$mypostcontrols = array( 
-				'Author' => 'authordiv',
-				'Category' => 'categorydiv', 
-				'Comments' => 'commentsdiv', 
-				'Custom fields' => 'postcustom', 
-				'Discussion' => 'commentstatusdiv', 
-				'Excerpt' => 'postexcerpt', 
-				'Revisions' => 'revisionsdiv', 
-				'Tags' => 'tagsdiv-post_tag', 
-				'Trackbacks' => 'trackbacksdiv'
-				);		
-				
-				//Generate form from array
-				foreach($mypostcontrols as $key => $value) { ?>
-				
-				<tr>
-					<th scope="row"><?php echo $key; ?></th>
-					<td>
-					<fieldset>
-					<legend class="screen-reader-text"><span><?php echo $key; ?></span></legend>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_post_administrator]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_post_administrator]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_post_administrator']); ?> />
-						Administrator
-						</label>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_post_editor]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_post_editor]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_post_editor']); ?> />
-						Editor
-						</label>
-						
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_post_author]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_post_author]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_post_author']); ?> />
-						Author
-						</label>
-						
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_post_contributor]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_post_contributor]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_post_contributor']); ?> />
-						Contributor
-						</label>
-						
-					</fieldset></td>
-				</tr>
-				
-				<?php 
-				}
-				?>
-			
-			</table>
+= Can you change the options for any user role? =
 
+**YES!** Administrators, editors, authors and contributors can all have different settings.
 
-			<div id="icon-tools" class="icon32"><br /></div>
-			<h2>Advanced Controls</h2>
-			<p>These options apply <strong>to all edit screens</strong> available to different <a href="http://codex.wordpress.org/Roles_and_Capabilities" title="WordPress roles and capabilities">user roles</a>.</p>
-	
-			<table class="form-table">
-			
-				<?php
-				$mywpcorecontrols = array(
-				'Remove media upload' => 'media_buttons'
-				);		
-	
-				//Generate form from array
-				foreach($mywpcorecontrols as $key => $value) { ?>		
-				
-				<tr>
-					<th scope="row"><?php echo $key; ?></th>
-					<td>
-					<fieldset>
-					<legend class="screen-reader-text"><span><?php echo $key; ?></span></legend>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_administrator]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_administrator]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_wpcore_administrator']); ?> />
-						Administrator
-						</label>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_editor]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_editor]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_wpcore_editor']); ?> />
-						Editor
-						</label>
-						
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_author]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_author]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_wpcore_author']); ?> />
-						Author
-						</label>
-						
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_contributor]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_contributor]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_wpcore_contributor']); ?> />
-						Contributor
-						</label>
-						
-					</fieldset></td>
-				</tr>
-				
-				<?php 
-				}
-				?>
-			
-			</table>
+= Can devious users still reveal the controls if they are hidden using tools like Firebug? =
 
-	
-			<?php /*		
-			DONT NEED THIS ANY MORE WITH WPCORE settings_fields()
-			<input type="hidden" name="wpcms_pcontrol_nonce" value="<?php echo wp_create_nonce('wpcms_pcontrol_nonce'); ?>" />
-			*/
-			?>
-			
-			<p class="submit">
-			<input type="submit" class="button-primary" value="<?php _e('Save Post Control options') ?>" />
-			</p>
-	
-		</form>
-		
-			<div id="icon-edit-comments" class="icon32"><br /></div>
-			<h2>Get new features and updates quicker!</h2>
-			<p>I have built and maintained this plugin for nearly two years, and share it with you at no cost. You can use it on as many websites as you like, even commercial ones without any credit or payment required.</p>
-			<p>I have loads of very cool new features planned too for the future of this plugin, but sadly I can only give so much of my time away for free!</p>
-			<p><strong>However, you may consider making a small donation through PayPal or your credit/debit card</strong> - treats and goodies make me code faster!</p> 		
-			<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-			<input type="hidden" name="cmd" value="_s-xclick">
-			<input type="hidden" name="hosted_button_id" value="2XJCF5U6KUNTC">
-			<table>
-			<tr><td><input type="hidden" name="on0" value="Fuel Jonny and get new features quicker - this plugin is free!"></td></tr><tr><td><select name="os0">
-				<option value="Dontate sweets">Dontate sweets &pound;1.00</option>
-				<option value="Donate cake">Donate cake &pound;5.00</option>
-				<option value="Donate steak">Donate steak &pound;10.00</option>
-				<option value="Donate goodies">Donate goodies &pound;25.00</option>
-				<option value="Ultimate karma">Ultimate karma &pound;50.00</option>
-			</select> </td></tr>
-			</table>
-			<input type="hidden" name="currency_code" value="GBP">
-			<input type="image" src="https://www.paypal.com/en_US/GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
-			<img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-			</form>
-			<p><strong>Money dontated since last Plugin update:</strong> Not even enough for <a href="http://twitpic.com/ydoj1" title="Kimmy">Kimmy&rsquo;s</a> treats!</p>
+**NO!** All of the core controls are removed in a completely different way now - not just hidden with CSS. They can't be revealed by hacking the browser rendered CSS, as they are not even rendered to the page anywhere!
 
-			<div id="icon-edit-comments" class="icon32"><br /></div>
-			<h2>More Information</h2>
-			<p><strong>Having problems?</strong> <a href="http://wp-cms.com/our-wordpress-plugins/post-control/" title="Visit the Post Control homepage">Drop by the plugin homepage</a> and leave a comment at <a href="http://wp-cms.com" title="WP-CMS website">http://wp-cms.com</a></p>
-			<p><strong>Developed and maintained by:</strong> <a href="http://jonnya.net" title="I make WordPress ZOOM!">Jonnya Creative WordPress Consultant</a>, see a few of the <a href="http://jonnya.net/tools/wordpress/" title="Some of the custom WordPress sites I've built">WordPresss sites I've built</a>.</p>
-			<p><strong>Coming June 2010, my new FREE WordPress theme framework:</strong> <a href="http://wonderflux.com" title="Wonderflux Framework">Wonderflux</a></p>		
-			
-	</div>
+= What options get used if I hide a control - like pingbacks and trackbacks? =
 
-<?php }
+The global options you set in the main WordPress options are used.
 
+= What happens if I activate/deactivate this plugin? =
 
-/**
-* Saves data from form
-*
-* @since 2.005
-* @lastupdate 2.016
-* 
-*/
-function wpcms_pcontrol_validate($input) {	
+This plugin currently uses only one entry in your options table (some plugins create many entries). In v2.0 the options are set to be persistent - so if you deactivate the plugin and re-enable it, the settings will remain.
 
-	// PAGE OPERATIONS 
-	$pc_administrator_pageopsall = array();
-	$pc_editor_pageopsall = array();
-	
-	foreach($input as $key => $value) {
+= I installed v.2.0 and I dont have autosave and other options =
 
-		$adminmatch = "/_page_administrator/";
-		$editormatch = "/_page_editor/";
-		
-		if (preg_match($adminmatch, $key)) {
-		    $pc_administrator_pageopsall[] = $value;
-	
-		} elseif (preg_match($editormatch, $key)) {
-			$pc_editor_pageopsall[] = $value;
-	
-		}
-		
-	}
-	
-	$input['pc_administrator_pageops'] = $pc_administrator_pageopsall;
-	$input['pc_editor_pageops'] = $pc_editor_pageopsall;
-	
-	// POST OPERATIONS 
-	$pc_administrator_postopsall = array();
-	$pc_editor_postopsall = array();
-	$pc_author_postopsall = array();
-	$pc_contributor_postopsall = array();
-	
-	foreach($input as $key => $value) {
+These controls are going to be reinstated in future versions.
 
-		$adminmatch = "/_post_administrator/";
-		$editormatch = "/_post_editor/";
-		$authormatch = "/_post_author/";
-		$contributormatch = "/_post_contributor/";	
-		
-		if (preg_match($adminmatch, $key)) {
-		    $pc_administrator_postopsall[] = $value;
-		    //print_r($pc_administrator_postopsall);
-	
-		} elseif (preg_match($editormatch, $key)) {
-			$pc_editor_postopsall[] = $value;
-	
-		} elseif (preg_match($authormatch, $key)) {
-			$pc_author_postopsall[] = $value;
-	
-		} elseif (preg_match($contributormatch, $key)) {
-			$pc_contributor_postopsall[] = $value;
-	
-		}
-	
-	}
-	
-	$input['pc_administrator_postops'] = $pc_administrator_postopsall;
-	$input['pc_editor_postops'] = $pc_editor_postopsall;
-	$input['pc_author_postops'] = $pc_author_postopsall;
-	$input['pc_contributor_postops'] = $pc_contributor_postopsall;
-	
-	// CORE FUNCTION OPERATIONS 
-	$pc_administrator_wpcoreopsall = array();
-	$pc_editor_wpcoreopsall = array();
-	$pc_author_wpcoreopsall = array();
-	$pc_contributor_wpcoreopsall = array();
-	
-	foreach($input as $key => $value) {
+= It's not working! =
 
-		$adminmatch = "/_wpcore_administrator/";
-		$editormatch = "/_wpcore_editor/";
-		$authormatch = "/_wpcore_author/";
-		$contributormatch = "/_wpcore_contributor/";	
-		
-		if (preg_match($adminmatch, $key)) {
-		    $pc_administrator_wpcoreopsall[] = $value;
-	
-		} elseif (preg_match($editormatch, $key)) {
-			$pc_editor_wpcoreopsall[] = $value;
-	
-		} elseif (preg_match($authormatch, $key)) {
-			$pc_author_wpcoreopsall[] = $value;
-	
-		} elseif (preg_match($contributormatch, $key)) {
-			$pc_contributor_wpcoreopsall[] = $value;
+**Make sure you are using the latest version!** V2.0 is designed for WordPress 2.8 and above, and is specifically optimised for WordPress 2.9 and above. It has not been tested on anything lower than 2.8 and if you are running a lower version of WordPress than this - it really is time to upgrade!
 
-		}
-	
-	}
-	
-	$input['pc_administrator_wpcoreops'] = $pc_administrator_wpcoreopsall;
-	$input['pc_editor_wpcoreops'] = $pc_editor_wpcoreopsall;
-	$input['pc_author_wpcoreops'] = $pc_author_wpcoreopsall;
-	$input['pc_contributor_wpcoreops'] = $pc_contributor_wpcoreopsall;
-	
-	return $input;
-}
+Ensure you have the plugin installed in the correct directory - you should have a directory called WP-CMS-post-control in your plugins directory.
 
+= What you got planned? =
 
-add_action('admin_init', 'wpcms_pcontrol_run');
-add_action('admin_init', 'wpcms_pcontrol_init' );
-add_action('admin_menu', 'wpcms_pcontrol_add_page');
-add_filter( 'plugin_row_meta', 'wpcms_pcontrol_meta', 10, 2 );
+I've got quite a few things I'd like to do with this plugin, but don't hold your breath waiting for them to happen... you may burst!
 
+= Wow, good work - I LOVE this plugin, and you did it all by yourself? =
 
-?>
+What began as inherited code has now been completely re-written in v2.0 to use new methods and best practices in WordPress plugin development.
+
+== Screenshots ==
+
+1. The admin interface, showing what you can control with this plugin.
+2. An example of a customised write/edit post - much simpler to use for all your users and clients!
+3. An example of a customised write/edit page - much simpler to use for all your users and clients!
+
+== Changelog ==
+
+= 2.0 = 
+* Ninth public release (19th March 2010)
+* Complete re-write of codebase = major efficiency improvements
+* New code eliminates all previous reported user issues
+* WordPress 2.9.2 compatibility updates
+* Introduced multi-user level controls
+* New remove media upload control
+
+= v1.2.1 =
+* Eighth public release (31st March 2009)
+* WordPress 2.7 author control
+
+= v1.2 =
+* Seventh public release (17th December 2008)
+* WordPress 2.7 compatibility build, re-write plugin controls to support new 'Crazy Horse' interface
+* Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i> 
+* Changed option array function for more control
+* Changed formatting of plugin options buttons
+
+= v1.11 =
+* Sixth public release (6th September 2008)
+* Option to hide editor sidebar shortcuts and 'Press It' function
+* Remove redundant preview code
+* Improved formatting for message box text and title input
+
+= v1.1 =
+* Development version (5th September 2008)
+* Found potential conflict with options variables declared within a theme functions file
+* Conflicting PHP variables for reference - 'options' and 'newoptions'
+* Should solve conflicts with wrongly coded variables from other plugins/themes
+
+= v1.03 =
+* Fifth public release (4th September 2008)
+* Fix the bug introduced in v1.02 that broke the form fields
+* After comments feedback, changed and documented admin control
+
+= v1.02  =
+* Forth public release (3rd September 2008)
+* Bug catches, may help plugin compatibility on different servers
+
+= v1.01 =
+* Third public release (2nd August 2008)
+* Option to insert message panel
+* General tidying on admin page
+
+= v1.0  =
+* Development version (1st August 2008)
+* Option to disable post and page revisions
+* Option to disable autosaves
+
+= v0.4  =
+* Development version (1st August 2008)
+* Option to select uploader (Flash or standard)
+* Option to hide revisions control
+* Option to hide word count
+* Option to hide Advanced Options header
+* Fixed page custom field control
+* Redesigned admin page
+
+= v0.3 =
+* Second public release (28th July 2008)
+* Introduced Admin user control.
+
+= v0.2 =
+* First public release (26th July 2008)
+* Included clean-up of database on de-activation.
+
+== Upgrade Notice ==
+
+= 2.0 =
+Please upgrade to the latest version with full WordPress 2.9 and above compatibility and to fix previous user issues reported.
