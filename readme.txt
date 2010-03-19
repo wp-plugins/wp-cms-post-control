@@ -9,38 +9,36 @@ Hide unwanted items from different user levels when they are writing and editing
 
 == Description ==
 
-**Post Control** from <a href="http://wp-cms.com/">WordPress CMS Modifications</a> builds upon the new controls in WordPress 2.9 to give you complete control over your write options **for every user level/role**. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content! This helps you use WordPress more like a CMS, alowing you to totally customise what your users see and use.
+**Post Control** from <a href="http://jonnya.net/">Jonny</a> at <a href="http://wp-cms.com/">WordPress CMS Modifications</a> builds upon the new controls in WordPress 2.9 to give you complete control over your write options **for every user level/role**. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content. This helps you use WordPress more like a CMS, alowing you to totally customise what your users see and use.
 
-Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options for instance - now you can hide them forever!
+Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options for instance - now you can decide what users can see and use.
 
-**New to version 2** is the ability to hide different items for different user roles - administrator, editor, author and even contributor. No you can decide and control every aspect of your users experience when editing content - whatever their role. 
+**New to version 2** is the ability to hide different items for each user role - administrator, editor, author and even contributor. Now you can decide and control every aspect of your users experience when editing content - whatever their role. 
 
 An example would be where you only wanted administrators and editors to be able to see and change the excerpt or commenting options! With this plugin you can control this and much more.
 
 You can control the display of the following post options for each role level:
 
-* Post: Tags
-* Post: Categories
-* Post: Excerpt
-* Post: Trackbacks
-* Post: Custom fields
-* Post: Discussion
-* Post: Comment & ping options
-* Post: Author
+* Post Tags
+* Post Categories
+* Post Excerpt
+* Post Trackbacks
+* Post Custom fields
+* Post Discussion
+* Post Comment & ping options
+* Post Author
 
 You can control the display of the following page options:
 
-* Page: Custom fields
-* Page: Discussion
-* Page: Comment & ping options
-* Page: Attributes
+* Page Custom fields
+* Page Discussion
+* Page Comment & ping options
+* Page Attributes
 
 You can control the display of the following global post/page options:
 
-* Post & Page: Media upload
-* Many more to come!
-
-Some of the options are confusing for many people (or they simply don't use them!), so make their lives simple by using *Post Control*!
+* Post/Page Media upload
+* Many more to come - including text editor and core function controls!
 
 The original codebase of this plugin began as a plugin build by Brady J. Frey. I maintained this version for some time, but version 2 is a complete re-write from the ground up. All new code written purely by me.
 
@@ -48,7 +46,7 @@ The original codebase of this plugin began as a plugin build by Brady J. Frey. I
 
 = First time install =
 
-1. Get the right version of this plugin here!
+1. Get the latest version of this plugin at the <a href="ordpress.org/extend/plugins/wp-cms-post-control/">official WordPress plugin directory</a>.
 2. Decompress .zip file, retaining file structure.
 3. Upload directory `wp-cms-post-control` and all containing files to the `/wp-content/plugins/` directory
 4. Activate the plugin through the 'Plugins' menu in WordPress
