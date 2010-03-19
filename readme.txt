@@ -1,42 +1,24 @@
 === WP-CMS Post Control ===
-Contributors: CMSBuilder Jonnya PeteInnes
+Contributors: Jonnyauk, CMSBuilder 
+Tags: post, page, metabox, cms
+Requires at least: 2.8.2
+Tested up to: 3.0-beta
+Stable tag: 2.0
 
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=contact%40jonnya%2enet&item_name=WP%2dCMS%20Post%20Control%20Plugin%20donation&page_style=PayPal&no_shipping=1&cn=Your%20comments&tax=0&currency_code=GBP&lc=GB&bn=PP%2dDonationsBF&charset=UTF%2d8
-Tags: cms, post, page, revisions, autosave, disable revision, disable autosave
-Requires at least: 2.7
-Tested up to: 2.7.1
-Stable tag: 1.2.1
-
-Complete control over write post/pages admin - hide all unwanted items, disable flash upload, post revisions, autosave & add a personal message.
+Hide unwanted items from different user levels when they are writing and editing posts and pages.
 
 == Description ==
 
-**Post Control** from <a href="http://wp-cms.com/">WordPress CMS Modifications</a> builds upon the new controls in WordPress 2.7 to give you complete control over your write options. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content! This helps you use WordPress more like a CMS, alowing you to totally customise what your authors see and use.
+**Post Control** from <a href="http://wp-cms.com/">WordPress CMS Modifications</a> builds upon the new controls in WordPress 2.9 to give you complete control over your write options **for every user level/role**. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content! This helps you use WordPress more like a CMS, alowing you to totally customise what your users see and use.
 
-The latest version of Post Control covers all features of WordPress 2.7 and is a substantial upgrade over the previous version - including full admin over-ride of hidden panels from users of lower levels.
+Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options for instance - now you can hide them forever!
 
-**IMPORTANT - If you are still using WordPress 2.6.x you can use the <a href="http://downloads.wordpress.org/plugin/wp-cms-post-control.1.11.zip">previous stable release</a> of this plugin that was designed for full compatibility with WordPress v2.5-2.6.3**
+**New to version 2** is the ability to hide different items for different user roles - administrator, editor, author and even contributor. No you can decide and control every aspect of your users experience when editing content - whatever their role. 
 
-With this plugin you can control the following advanced options:
+An example would be where you only wanted administrators and editors to be able to see and change the excerpt or commenting options! With this plugin you can control this and much more.
 
-* Force standard browser upload instead of Flash upload - great if you are having trouble with the Flash uploader, this stops you needing to select 'browser uploader' every time if the Flash uploader doesn't work for you!
+You can control the display of the following post options for each role level:
 
-* Turn off the revisions feature completely, some people don't want to use this. This is great when you are developing a site - why clutter up your database with loads of revisions when you don't need them! Just turn them off whilst you are developing the site, then turn back on if you want the functionality back on site launch!
-
-* Turn off the auto save feature, some people have problems with this or don't wish to be interrupted as they type.
-
-* Create a collapsable message panel that appears below the write panel, allowing you to show messages to authors.
-
-* Hide the Screen Options and Help dropdown introduced in WordPress 2.7
-
-* Hide the favorites dropdown in the admin header introduced in WordPress 2.7
-
-* Hide the Dashboard QuickPress panel introduced in WordPress 2.7
-
-You can control the display of the following post options:
-
-* Post: Preview button
-* Post: Permalink
 * Post: Tags
 * Post: Categories
 * Post: Excerpt
@@ -55,29 +37,22 @@ You can control the display of the following page options:
 
 You can control the display of the following global post/page options:
 
-* Post & Page: Publish visibility
-* Post & Page: Publish date
 * Post & Page: Media upload
-* Post & Page: Revisions menu
-* Post & Page: Word count
+* Many more to come!
 
-We love WordPress, and think it makes a fantastic CMS - this plugin goes one step further to making WordPress behave more like a CMS and a-little less like a blog! Some of the options are confusing for many people (or they simply don't use them!), so make their lives simple by using *Post Control*!
+Some of the options are confusing for many people (or they simply don't use them!), so make their lives simple by using *Post Control*!
 
-
-**This plugin builds upon some great work by** Brady J. Frey, Mark Jaquith. Many thanks to Pete Innes for bug swatting, testing and fresh eyes on the code!
-
+The original codebase of this plugin began as a plugin build by Brady J. Frey. I maintained this version for some time, but version 2 is a complete re-write from the ground up. All new code written purely by me.
 
 == Installation ==
 
 = First time install =
 
-1. Get the right version of this plugin! The latest version is designed for WordPress 2.7 and above - use V1.11 for older versions of WordPress down to 2.5
+1. Get the right version of this plugin here!
 2. Decompress .zip file, retaining file structure.
 3. Upload directory `wp-cms-post-control` and all containing files to the `/wp-content/plugins/` directory
 4. Activate the plugin through the 'Plugins' menu in WordPress
 5. Configure options through `Settings > Post Control`
-
-**NOTE** You can just upload the file `wp-cms-post-control.php` to your `/wp-content/plugins/` directory. Hoever, when using the WordPress plugin auto-update, I noticed that it installs it in a folder and deletes a single file install - so I guess it may be more compatible to upload the whole thing within different hosting environments to improve update compatibility.
 
 = Update existing install =
 
@@ -90,41 +65,37 @@ We love WordPress, and think it makes a fantastic CMS - this plugin goes one ste
 
 The automatic plugin update feature of WordPress works fine with this plugin. If your server supports it you should certainly use this as it's the easiest way to keep your plugins up-to-date.
 
-You should de-activate the plugin first, as this will ensure that the correct options are set/cleaned-up in the database (especially important as new featues are rolled out to the plugin).
-
-If you have problems, de-activating, then re-activating after update should sort it out for you.
-
 == Frequently Asked Questions ==
 
-= What happens to the options I set under 'screen options' in WordPress 2.7 and above? =
+= I used versions of this plugin prior to v2 and sometimes the controls wouldn't re-appear once deactivated. Have you fixed this? =
 
-This plugin over-rides these settings, so it's probably best to hide this menu using the plugin options page.
+**YES!** Version 2 (and above) is a complete re-write, using a new method to remove the controls. Because of this, these issues are now completely resolved.
 
-= There's a bunch of funny code in the form fields in the options page - that's not right is it? =
+= Can you change the options for any user role? =
 
-**NO!** There was a bug in v1.02 of this plugin, this has now been fixed in v1.03 and above. Please download the latest version from the link on the right.
+**YES!** Administrators, editors, authors and contributors can all have different settings.
 
-= Can you change the options for the admin user/different users? =
+= Can devious users still reveal the controls if they are hidden using tools like Firebug? =
 
-**YES!** This was introduced in v0.3.
+**NO!** All of the core controls are removed in a completely different way now - not just hidden with CSS. They can't be revealed by hacking the browser rendered CSS, as they are not even rendered to the page anywhere!
 
-= If I hide things like comments, what options get set? =
+= What options get used if I hide a control - like pingbacks and trackbacks? =
 
-If you hide these options using this plugin, the options default to what you have got your main WordPress options to under 'Settings'.
+The global options you set in the main WordPress options are used.
 
 = What happens if I activate/deactivate this plugin? =
 
-The Post Control plugin doesn't modify any core settings or files and it's options are stored in the database options table, which are deleted when you de-activate the plugin. I like well behaved plugins that don't leave loads of junk in your database!
+This plugin currently uses only one entry in your options table (some plugins create many entries). In v2.0 the options are set to be persistent - so if you deactivate the plugin and re-enable it, the settings will remain.
 
-= Can I put code in the message panel =
+= I installed v.2.0 and I dont have autosave and other options =
 
-No, you can only put simple text in the message panel for security reasons. However, you can format your text using simple tagging like bold and italic.
+These controls are going to be reinstated in future versions.
 
 = It's not working! =
 
-**Make sure you are using the latest version!** V1.2 is designed for WordPress 2.7 and above, V1.11 is designed to run on WordPress 2.5 to Wordpress 2.6.3
+**Make sure you are using the latest version!** V2.0 is designed for WordPress 2.8 and above, and is specifically optimised for WordPress 2.9 and above. It has not been tested on anything lower than 2.8 and if you are running a lower version of WordPress than this - it really is time to upgrade!
 
-If it still doesn't work for you, try de-activating, then re-activate the plugin. It behaves well and cleans-up after itself, so this will delete all database options entries created by the plugin and create you a new set. Also you might try hitting refresh in your browser to ensure the plugins CSS control is being used by your browser.
+Ensure you have the plugin installed in the correct directory - you should have a directory called WP-CMS-post-control in your plugins directory.
 
 = What you got planned? =
 
@@ -132,70 +103,84 @@ I've got quite a few things I'd like to do with this plugin, but don't hold your
 
 = Wow, good work - I LOVE this plugin, and you did it all by yourself? =
 
-*The simple answer is no*, the code of this plugin started as <a href="http://txfx.net/code/wordpress/clutter-free/">Clutter-Free</a> by <a href="http://txfx.net/">Mark Jaquith</a>, modified and bought up-to-date by <a href="http://www.bradyjfrey.com/">Brady J. Frey</a>.
-
-Brady kindly offered to pass over development of his version of the plugin called 'Cloak' to me, so I could maintain it and update it with new features and incorporate it into the WordPress plugin repository for the good of the whole WordPress community. I loved the name 'Cloak', but I intend to extend it to do more than just hide stuff, so thought I'd give it a more descriptive title!
-
-It has since expanded to include more options and cover the latest version of WordPress. I have also added a range of new controls that go way above and beyond what Cloak did, and have more planned for the future!
+What began as inherited code has now been completely re-written in v2.0 to use new methods and best practices in WordPress plugin development.
 
 == Screenshots ==
 
 1. The admin interface, showing what you can control with this plugin.
-2. An example of a customised write panel - much simpler to use for all your authors and clients!
+2. An example of a customised write/edit post - much simpler to use for all your users and clients!
+3. An example of a customised write/edit page - much simpler to use for all your users and clients!
 
-== Development Notes ==
+== Changelog ==
 
-= v0.2 - First public release (26th July 2008) =
+= 2.0 = 
+* Ninth public release (19th March 2010)
+* Complete re-write of codebase = major efficiency improvements
+* New code eliminates all previous reported user issues
+* WordPress 2.9.2 compatibility updates
+* Introduced multi-user level controls
+* New remove media upload control
 
-- Included clean-up of database on de-activation.
+= v1.2.1 =
+* Eighth public release (31st March 2009)
+* WordPress 2.7 author control
 
-= v0.3 - Second public release (28th July 2008) =
+= v1.2 =
+* Seventh public release (17th December 2008)
+* WordPress 2.7 compatibility build, re-write plugin controls to support new 'Crazy Horse' interface
+* Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i> 
+* Changed option array function for more control
+* Changed formatting of plugin options buttons
 
-- Introduced Admin user control.
+= v1.11 =
+* Sixth public release (6th September 2008)
+* Option to hide editor sidebar shortcuts and 'Press It' function
+* Remove redundant preview code
+* Improved formatting for message box text and title input
 
-= v0.4 - Development version (1st August 2008) =
+= v1.1 =
+* Development version (5th September 2008)
+* Found potential conflict with options variables declared within a theme functions file
+* Conflicting PHP variables for reference - 'options' and 'newoptions'
+* Should solve conflicts with wrongly coded variables from other plugins/themes
 
-- Option to select uploader (Flash or standard)
-- Option to hide revisions control
-- Option to hide word count
-- Option to hide Advanced Options header
-- Fixed page custom field control
-- Redesigned admin page
+= v1.03 =
+* Fifth public release (4th September 2008)
+* Fix the bug introduced in v1.02 that broke the form fields
+* After comments feedback, changed and documented admin control
 
-= v1.0 - Development version (1st August 2008) =
+= v1.02  =
+* Forth public release (3rd September 2008)
+* Bug catches, may help plugin compatibility on different servers
 
-- Option to disable post and page revisions
-- Option to disable autosaves
+= v1.01 =
+* Third public release (2nd August 2008)
+* Option to insert message panel
+* General tidying on admin page
 
-= v1.01 - Third public release (2nd August 2008) =
+= v1.0  =
+* Development version (1st August 2008)
+* Option to disable post and page revisions
+* Option to disable autosaves
 
-- Option to insert message panel
-- General tidying on admin page
+= v0.4  =
+* Development version (1st August 2008)
+* Option to select uploader (Flash or standard)
+* Option to hide revisions control
+* Option to hide word count
+* Option to hide Advanced Options header
+* Fixed page custom field control
+* Redesigned admin page
 
-= v1.02 - Forth public release (3rd September 2008) =
+= v0.3 =
+* Second public release (28th July 2008)
+* Introduced Admin user control.
 
-- Bug catches, may help plugin compatibility on different servers
+= v0.2 =
+* First public release (26th July 2008)
+* Included clean-up of database on de-activation.
 
-= v1.03 - Fifth public release (4th September 2008) =
+== Upgrade Notice ==
 
-- Fix the bug introduced in v1.02 that broke the form fields
-- After comments feedback, changed and documented admin control
-
-= v1.1 - Development version (5th September 2008) =
-- Found potential conflict with options variables declaired within a theme functions file
-- Confilicting PHP variables for reference - 'options' and 'newoptions'
-- Should solve conflicts with wrongly coded variables from other plugins/themes
-		
-= v1.11 - Sixth public release (6th September 2008) =
-- Option to hide editor sidebar shortcuts and 'Press It' function
-- Remove redundant preview code
-- Improved formatting for message box text and title input
-
-= v1.2 - Seventh public release (17th December 2008) =
-- WordPress 2.7 compatibility build, re-write plugin controls to support new 'Crazy Horse' interface
-- Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i> 
-- Changed option array function for more control
-- Changed formatting of plugin options buttons
-
-= v1.2.1 - Eighth public release (31st March 2009) =
-- WordPress 2.7 author control
+= 2.0 =
+Please upgrade to the latest version with full WordPress 2.9 and above compatibility and to fix previous user issues reported.
