@@ -3,7 +3,7 @@ Contributors: Jonnyauk, CMSBuilder
 Tags: post, page, metabox, autosave, revisions, flash, uploader, cms, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload
 Requires at least: 2.9
 Tested up to: 3.0-beta
-Stable tag: 2.1
+Stable tag: 2.11
 
 Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 
@@ -64,7 +64,7 @@ The automatic plugin update feature of WordPress works fine with this plugin. If
 
 = I'm using v2.0 and I have some error messages appear at the top of the screen. =
 
-2.01 (and above) fixes this glitch - thanks for the feedback!
+2.11 (and above) fixes this glitch - thanks for the feedback!
 
 = I used versions of this plugin prior to v2 and sometimes the controls wouldn't re-appear once deactivated. =
 
@@ -117,8 +117,12 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 
 == Changelog ==
 
+= 2.11 = 
+* 22th March 2010
+* Bug swatting
+
 = 2.1 = 
-* Eleventh public release (22th March 2010)
+* 22th March 2010
 * Added new Core Functions sub-menu page
 * Added new disable autosave control
 * Added new disable revisions control
@@ -127,12 +131,12 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Bug swatting
 
 = 2.01 = 
-* Tenth public release (20th March 2010)
+* 20th March 2010
 * Fixed bug when values empty
 * Amended data sanitisation input
 
 = 2.0 = 
-* Ninth public release (19th March 2010)
+* 19th March 2010
 * Complete re-write of codebase = major efficiency improvements
 * New code eliminates all previous reported user issues
 * WordPress 2.9.2 compatibility updates
@@ -140,49 +144,49 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * New remove media upload control
 
 = v1.2.1 =
-* Eighth public release (31st March 2009)
+* 31st March 2009
 * WordPress 2.7 author control
 
 = v1.2 =
-* Seventh public release (17th December 2008)
+* 17th December 2008
 * WordPress 2.7 compatibility build, re-write plugin controls to support new 'Crazy Horse' interface
 * Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i> 
 * Changed option array function for more control
 * Changed formatting of plugin options buttons
 
 = v1.11 =
-* Sixth public release (6th September 2008)
+* 6th September 2008
 * Option to hide editor sidebar shortcuts and 'Press It' function
 * Remove redundant preview code
 * Improved formatting for message box text and title input
 
 = v1.1 =
-* Development version (5th September 2008)
+* 5th September 2008
 * Found potential conflict with options variables declared within a theme functions file
 * Conflicting PHP variables for reference - 'options' and 'newoptions'
 * Should solve conflicts with wrongly coded variables from other plugins/themes
 
 = v1.03 =
-* Fifth public release (4th September 2008)
+* 4th September 2008
 * Fix the bug introduced in v1.02 that broke the form fields
 * After comments feedback, changed and documented admin control
 
 = v1.02  =
-* Forth public release (3rd September 2008)
+* 3rd September 2008
 * Bug catches, may help plugin compatibility on different servers
 
 = v1.01 =
-* Third public release (2nd August 2008)
+* 2nd August 2008
 * Option to insert message panel
 * General tidying on admin page
 
 = v1.0  =
-* Development version (1st August 2008)
+* 1st August 2008
 * Option to disable post and page revisions
 * Option to disable autosaves
 
 = v0.4  =
-* Development version (1st August 2008)
+1st August 2008
 * Option to select uploader (Flash or standard)
 * Option to hide revisions control
 * Option to hide word count
@@ -191,14 +195,17 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Redesigned admin page
 
 = v0.3 =
-* Second public release (28th July 2008)
+* 28th July 2008
 * Introduced Admin user control.
 
 = v0.2 =
-* First public release (26th July 2008)
+* 26th July 2008
 * Included clean-up of database on de-activation.
 
 == Upgrade Notice ==
+
+= 2.11 =
+Please upgrade for bug fixes!
 
 = 2.1 =
 Please upgrade to get new features!
