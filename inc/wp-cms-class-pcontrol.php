@@ -6,8 +6,8 @@ class wpcms_pcontrol {
 	* Removes meta boxes from the page admin area
 	* Executes on 'edit page' and 'new page'
 	*
-	* @since 2.001
-	* @lastupdate 2.012
+	* @since 2.0
+	* @lastupdate 2.0
 	* 
 	*
 	*/  
@@ -34,7 +34,7 @@ class wpcms_pcontrol {
 	* Removes meta boxes from the post admin area
 	* Executes on 'edit page' and 'new page'
 	*
-	* @since 2.001
+	* @since 2.0
 	* @lastupdate 2.01
 	*
 	*
@@ -56,9 +56,9 @@ class wpcms_pcontrol {
 		//Extra controls
 		$wpcms_pcpost_doit->pccore_functionremove($extraops);
 		
-			}
+	}
 		
-		}
+}
 
 
 class wpcms_pcontrol_engine {
@@ -66,7 +66,7 @@ class wpcms_pcontrol_engine {
 	/**
 	* Loops through array of supplied values and removes meta boxes from posts/pages
 	*
-	* @since 2.007
+	* @since 2.0
 	* @lastupdate 2.01
 	* 
 	*
@@ -93,8 +93,8 @@ class wpcms_pcontrol_engine {
 	* Loops through array of supplied values and removes actions from WordPress ie media upload
 	* Better to remove than just hide with CSS, people have browser CSS editors!!
 	*
-	* @since 2.07
-	* @lastupdate 2.01
+	* @since 2.0
+	* @lastupdate 2.0
 	* 
 	*
 	* @param $whichbox = which function to remove
@@ -111,12 +111,28 @@ class wpcms_pcontrol_engine {
 			
 		}
 	}
+	
+
+	
+	/**
+	* Can reuse for things like no flash
+	*
+	* @since 2.1
+	* @lastupdate 2.1
+	* 
+	* @return false
+	*/  
+	function pccore_false() {
+		return false;
+	}
+
+	
 
 	/**
 	* Returns user role of logged in user
 	*
-	* @since 2.006
-	* @lastupdate 2.010
+	* @since 2.0
+	* @lastupdate 2.0
 	* 
 	* @return User role: 'administrator', 'editor', 'author', 'contributor', subscriber'
 	*/  	
