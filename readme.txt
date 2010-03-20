@@ -3,19 +3,17 @@ Contributors: Jonnyauk, CMSBuilder
 Tags: post, page, metabox, cms
 Requires at least: 2.9
 Tested up to: 3.0-beta
-Stable tag: 2.01
+Stable tag: 2.1
 
-Hide unwanted items from different user levels when they are writing and editing posts and pages.
+Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 
 == Description ==
 
-**Post Control** from <a href="http://wp-cms.com/">WordPress CMS Modifications</a> builds upon the new controls in WordPress 2.9 to give you complete control over your write options **for every user level/role**. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content. This helps you use WordPress more like a CMS, alowing you to totally customise what your users see and use.
+**Post Control** from <a href="http://wp-cms.com/">WordPress CMS Modifications</a> gives you complete control over your write options **for every user level/role**. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content.
 
 Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options for instance - now you can decide what users can see and use.
 
-**New to version 2** is the ability to hide different items for each user role - administrator, editor, author and even contributor. Now you can decide and control every aspect of your users experience when editing content - whatever their role. 
-
-An example would be where you only wanted administrators and editors to be able to see and change the excerpt or commenting options! With this plugin you can control this and much more.
+**New to version 2** is the ability to hide different items for each user role - administrator, editor, author and even contributor. 
 
 You can control the display of the following post options for each role level:
 
@@ -38,15 +36,21 @@ You can control the display of the following page options:
 You can control the display of the following global post/page options:
 
 * Post/Page Media upload
-* Many more to come - including text editor and core function controls!
+* Disable autosave
+* Disable post revisions
+* Disable flash uploader and just use browser uploader
 
 == Installation ==
 
 = First time install =
 
+You can use the built-in WordPress add plugin system to install Post Control once logged into your site, it's quick and easy!
+
+If you want to manually upload and install:
+
 1. Get the latest version of this plugin at the <a href="http://wordpress.org/extend/plugins/wp-cms-post-control/">official WordPress plugin directory</a>.
 2. Decompress .zip file, retaining file structure.
-3. Upload directory `wp-cms-post-control` and all containing files to the `/wp-content/plugins/` directory
+3. Upload directory `wp-cms-post-control` and all containing files to your plugins directory - normally `/wp-content/plugins/`
 4. Activate the plugin through the 'Plugins' menu in WordPress
 5. Configure options through `Settings > Post Control`
 
@@ -54,17 +58,17 @@ You can control the display of the following global post/page options:
 
 The automatic plugin update feature of WordPress works fine with this plugin. If your server supports it you should certainly use this as it's the easiest way to keep your plugins up-to-date.
 
-You should go to the options page and re-save your Post Control options to refresh the settings after an update.
+**IMPORTANT** When you upgrade, you should go to the options page and re-save your Post Control options to refresh the settings.
 
 == Frequently Asked Questions ==
 
 = I'm using v2.0 and I have some error messages appear at the top of the screen. =
 
-**YES!** Version 2.01 (and above) fixes this glitch - thanks for the feedback!
+2.01 (and above) fixes this glitch - thanks for the feedback!
 
 = I used versions of this plugin prior to v2 and sometimes the controls wouldn't re-appear once deactivated. =
 
-**YES!** Version 2 (and above) is a complete re-write, using a new method to remove the controls. Because of this, these issues are now completely resolved.
+2.0 and above is a complete re-write using a new method to remove the controls. Because of this, these issues are now completely resolved.
 
 = Can you change the options for any user role? =
 
@@ -78,19 +82,23 @@ You should go to the options page and re-save your Post Control options to refre
 
 The global options you set in the main WordPress options are used.
 
+= How do I delete the option(s) out of my database perminantely?
+
+In v2.1 and above just dectivate the plugin and then delete it using the WordPress plugin page option (not just of your server via FTP!). When the plugin is deleted through WordPress, it also deletes the option(s) from the database options table that are created.
+
 = What happens if I activate/deactivate this plugin? =
 
-This plugin currently uses only one entry in your options table (some plugins create many entries). In v2.0 the options are set to be persistent - so if you deactivate the plugin and re-enable it, the settings will remain.
+In v2.1 the options are set to be persistent - so if you deactivate the plugin and re-enable it, the settings will remain saved. Delete the plugin to delete the saved database options.
 
 = I installed v.2.0 and I dont have autosave and other options =
 
-These controls are going to be reinstated in future versions.
+These are now restored in v2.1 and above. Click on the **core functions** link at the top of the screen to turn off autosaves, revisions and the Flash uploader.
 
 = It's not working! =
 
-**Make sure you are using the latest version!** V2.0 is designed for WordPress 2.9 and above. If you are using a version older than that, you really should think about upgrading!
+**Make sure you are using the latest version!** V2.0 is designed for WordPress 2.9 and above. If you are using a version older than that, you will have to use an older version of the plugin - and really should think about upgrading, this plugin is ready for you!
 
-Ensure you have the plugin installed in the correct directory - you should have a directory called WP-CMS-post-control in your plugins directory.
+Ensure you have the plugin installed in the correct directory - you should have a directory called **wp-cms-post-control** in your plugins directory. Inside there should be another directory called **inc**.
 
 = What you got planned? =
 
@@ -98,15 +106,25 @@ I've got quite a few things I'd like to do with this plugin, but don't hold your
 
 = Wow, good work - I LOVE this plugin, and you did it all by yourself? =
 
-What began as inherited code has now been completely re-written in v2.0 to use new methods and best practices in WordPress plugin development. The first codebase began as a plugin build by Brady J. Frey. I maintained this version for some time, but version 2 is a complete re-write from the ground up.
+What began as inherited code has now been completely re-written in v2.0 to use new methods and best practices in WordPress plugin development by Jonny. The first codebase began as a plugin build by Brady J. Frey and I maintained this version for some time, but version 2 is a complete re-write from the ground up.
 
 == Screenshots ==
 
-1. The admin interface, showing what you can control with this plugin.
-2. An example of a customised write/edit post - much simpler to use for all your users and clients!
+1. The first post control admin screen where the main options are set for each user level.
+2. The core functions option screen, where more advanced WordPress controls are set.
 3. An example of a customised write/edit page - much simpler to use for all your users and clients!
+4. An example of a customised write/edit post - much simpler to use for all your users and clients!
 
 == Changelog ==
+
+= 2.1 = 
+* Eleventh public release (22th March 2010)
+* Added new Core Functions sub-menu page
+* Added new disable autosave control
+* Added new disable revisions control
+* Added new disable flash uploader control
+* Added cleanup of options on delete of plugin (not deactivation)
+* Bug swatting
 
 = 2.01 = 
 * Tenth public release (20th March 2010)
@@ -182,6 +200,8 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 
 == Upgrade Notice ==
 
+= 2.1 =
+Please upgrade to get new features!
 
 = 2.01 =
 Please upgrade to the latest version with full WordPress 2.9 and above compatibility and to fix previous user issues reported.

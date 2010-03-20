@@ -1,46 +1,46 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 2.01
+Version: 2.1
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
-Description: Hides unwanted items within the write/edit page and post admin area, including individual controls for different user levels.
-Author: Jonny Allbut - Jonnya Creative WordPress Consultant
+Description: Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
+Author: Jonnya Creative WordPress Consultant
 Author URI: http://jonnya.net
 License: GPL
 */
 
-/*
+/****
 
 View readme.txt for full documentation or view documentation at http://wordpress.org/extend/plugins/wp-cms-post-control
+The latest version of this plugin (along with all other versions) can be downloaded from http://wordpress.org/extend/plugins/wp-cms-post-control
 
-The latest version of this plugin (along with all older versions) can be downloaded from http://wordpress.org/extend/plugins/wp-cms-post-control
+****/
 
-*/
-
+include("inc/wp-cms-class-pcontrol.php");
 
 /**
 * Setup Post Control
 *
-* @since 2.001
-* @lastupdate 2.001
+* @since 2.0
+* @lastupdate 2.1
 * 
 */
 function wpcms_pcontrol_init(){
 	register_setting( 'wpcms_pcontrol_options', 'wpcms_pcontrolopts', 'wpcms_pcontrol_validate' );
-	register_setting( 'wpcms_pcontrol_options', 'wpcms_pcontrolopts', 'wpcms_pcontrol_validate' );
+	register_setting( 'wpcms_pcontrol_options_ex', 'wpcms_pcontrolopts_ex', 'wpcms_pcontrol_validate_ex' );	
 }
 
 
+	
 /**
 * Run Post Control
 *
-* @since 2.001
-* @lastupdate 2.003
+* @since 2.0
+* @lastupdate 2.0
 * 
 */
 function wpcms_pcontrol_run() {
 
-	include("inc/wp-cms-class-pcontrol.php");
 	$wpcms_pcontrol_doit = new wpcms_pcontrol;
 
 	// Just load what we need when we need it
@@ -52,11 +52,45 @@ function wpcms_pcontrol_run() {
 }
 
 
+
+/**
+* Run Post Control extended functions
+*
+* @since 2.1
+* @lastupdate 2.1
+* 
+*/
+function wpcms_pcontrol_ex_init(){
+	
+	$ex_doit = new wpcms_pcontrol_engine;
+	
+	$options = get_option('wpcms_pcontrolopts_ex');
+	
+	foreach ($options as $key => $value) {
+		
+		if ( $key == 'revisions' && $value == 'off' ) {
+			@remove_action ( 'pre_post_update', 'wp_save_post_revision' );
+		}
+		
+		if ( $key == 'flashupload' && $value == 'off' ) {			
+			add_filter('flash_uploader', array($ex_doit, 'pccore_false'), 5);
+		}
+			
+		if ( $key == 'autosave' && $value == 'off' ) {
+			wp_deregister_script('autosave');
+		}
+		
+	}
+	
+}
+
+
+
 /**
 * Adds options page
 *
-* @since 2.001
-* @lastupdate 2.003
+* @since 2.0
+* @lastupdate 2.0
 * 
 */
 function wpcms_pcontrol_add_page() {
@@ -65,11 +99,26 @@ function wpcms_pcontrol_add_page() {
 }
 
 
+
+/**
+* Adds extended core options page
+*
+* @since 2.1
+* @lastupdate 2.1
+* 
+*/
+function wpcms_pcontrol_add_page_ex() {
+	// Access level is set here - level 10 = admin only, could change if required!
+	add_options_page('WP-CMS Post Control Core Functions', 'Post Control Core', 10, 'wpcms_pcontrol_ex', 'wpcms_pcontrol_do_page_ex');
+}
+
+
+
 /**
 * Add link to plugins listing to jump to admin
 *
-* @since 2.005
-* @lastupdate 2.007
+* @since 2.0
+* @lastupdate 2.0
 * 
 */
 function wpcms_pcontrol_meta($links, $file) {
@@ -87,235 +136,37 @@ function wpcms_pcontrol_meta($links, $file) {
 }
 
 
+
 /**
 * Options page content
 *
 * @since 2.005
-* @lastupdate 2.015
+* @lastupdate 2.1
 * 
 */
-function wpcms_pcontrol_do_page() { ?>
-	
-	<div class="wrap">
-		<div id="icon-options-general" class="icon32"><br /></div>
-		<h2>WP-CMS Post Control</h2>
-					
-		<form method="post" action="options.php">
-			<?php
-			//Output nonce, action, and option_page fields for a settings page
-			// @param string $option_group A settings group name. IMPORTANT - This should match the group name used in register_setting()
-			settings_fields('wpcms_pcontrol_options');
-			?>
+function wpcms_pcontrol_do_page() {
+		include("inc/wp-cms-opts-pcontrol-main.php");
+}
 
-			<p class="submit">
-			<input type="submit" class="button-primary" value="<?php _e('Save Post Control options') ?>" />
-			</p>
-			
-			<?php $options = get_option('wpcms_pcontrolopts'); ?>
-				
-			<div id="icon-themes" class="icon32"><br /></div>
-			<h2>Page Controls</h2>
-			<p>Check option <strong>to hide create/edit page controls </strong> available to different <a href="http://codex.wordpress.org/Roles_and_Capabilities" title="WordPress roles and capabilities">user roles</a>.</p>
-			<p>Page creation and editing is only available to administrator and editor level users.</p>
-
-	
-			<table class="form-table">
-			
-				<?php
-				$mypagecontrols = array(
-				'Attributes' => 'pageparentdiv', 
-				'Author (if multiple)' => 'pageauthordiv', 
-				'Custom Fields' => 'postcustom',
-				'Discussion' => 'commentstatusdiv', 
-				'Revisions' => 'revisionsdiv'
-				);		
-	
-				//Generate form from array
-				foreach($mypagecontrols as $key => $value) { ?>		
-				
-				<tr>
-					<th scope="row"><?php echo $key; ?></th>
-					<td>
-					<fieldset>
-					<legend class="screen-reader-text"><span><?php echo $key; ?></span></legend>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_page_administrator]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_page_administrator]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_page_administrator']); ?> />
-						Administrator
-						</label>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_page_editor]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_page_editor]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_page_editor']); ?> />
-						Editor
-						</label>
-						
-					</fieldset></td>
-				</tr>
-				
-				<?php 
-				}
-				?>
-			
-			</table>
-
-			
-			<div id="icon-themes" class="icon32"><br /></div>
-			<h2>Post Controls</h2>
-			<p>Check option <strong>to hide create/edit post controls </strong> available to different <a href="http://codex.wordpress.org/Roles_and_Capabilities" title="WordPress roles and capabilities">user roles</a>.</p>
-	
-			<table class="form-table">
-			
-				<?php
-				$mypostcontrols = array( 
-				'Author (if multiple)' => 'authordiv',
-				'Category' => 'categorydiv', 
-				'Comments' => 'commentsdiv', 
-				'Custom fields' => 'postcustom', 
-				'Discussion' => 'commentstatusdiv', 
-				'Excerpt' => 'postexcerpt', 
-				'Revisions' => 'revisionsdiv', 
-				'Tags' => 'tagsdiv-post_tag', 
-				'Trackbacks' => 'trackbacksdiv'
-				);		
-				
-				//Generate form from array
-				foreach($mypostcontrols as $key => $value) { ?>
-				
-				<tr>
-					<th scope="row"><?php echo $key; ?></th>
-					<td>
-					<fieldset>
-					<legend class="screen-reader-text"><span><?php echo $key; ?></span></legend>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_post_administrator]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_post_administrator]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_post_administrator']); ?> />
-						Administrator
-						</label>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_post_editor]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_post_editor]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_post_editor']); ?> />
-						Editor
-						</label>
-						
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_post_author]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_post_author]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_post_author']); ?> />
-						Author
-						</label>
-						
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_post_contributor]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_post_contributor]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_post_contributor']); ?> />
-						Contributor
-						</label>
-						
-					</fieldset></td>
-				</tr>
-				
-				<?php 
-				}
-				?>
-			
-			</table>
-
-
-			<div id="icon-tools" class="icon32"><br /></div>
-			<h2>Advanced Controls</h2>
-			<p>These options apply <strong>to all edit screens</strong> available to different <a href="http://codex.wordpress.org/Roles_and_Capabilities" title="WordPress roles and capabilities">user roles</a>.</p>
-	
-			<table class="form-table">
-			
-				<?php
-				$mywpcorecontrols = array(
-				'Remove media upload' => 'media_buttons'
-				);		
-	
-				//Generate form from array
-				foreach($mywpcorecontrols as $key => $value) { ?>		
-				
-				<tr>
-					<th scope="row"><?php echo $key; ?></th>
-					<td>
-					<fieldset>
-					<legend class="screen-reader-text"><span><?php echo $key; ?></span></legend>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_administrator]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_administrator]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_wpcore_administrator']); ?> />
-						Administrator
-						</label>
-	
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_editor]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_editor]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_wpcore_editor']); ?> />
-						Editor
-						</label>
-						
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_author]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_author]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_wpcore_author']); ?> />
-						Author
-						</label>
-						
-						<label for="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_contributor]">
-						<input name="wpcms_pcontrolopts[<?php echo $value; ?>_wpcore_contributor]" type="checkbox" id="<?php echo $value; ?>" value="<?php echo $value; ?>" <?php checked(''.$value.'', $options[''.$value.'_wpcore_contributor']); ?> />
-						Contributor
-						</label>
-						
-					</fieldset></td>
-				</tr>
-				
-				<?php 
-				}
-				?>
-			
-			</table>
-
-	
-			<?php /*		
-			DONT NEED THIS ANY MORE WITH WPCORE settings_fields()
-			<input type="hidden" name="wpcms_pcontrol_nonce" value="<?php echo wp_create_nonce('wpcms_pcontrol_nonce'); ?>" />
-			*/
-			?>
-			
-			<p class="submit">
-			<input type="submit" class="button-primary" value="<?php _e('Save Post Control options') ?>" />
-			</p>
-	
-		</form>
-		
-			<div id="icon-edit-comments" class="icon32"><br /></div>
-			<h2>Get new features and updates quicker!</h2>
-			<p>I have built and maintained this plugin for nearly two years, and share it with you at no cost. You can use it on as many websites as you like, even commercial ones without any credit or payment required.</p>
-			<p>I have loads of very cool new features planned too for the future of this plugin, but sadly I can only give so much of my time away for free!</p>
-			<p><strong>However, you may consider making a small donation through PayPal or your credit/debit card</strong> - treats and goodies make me code faster!</p> 		
-			<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-			<input type="hidden" name="cmd" value="_s-xclick">
-			<input type="hidden" name="hosted_button_id" value="2XJCF5U6KUNTC">
-			<table>
-			<tr><td><input type="hidden" name="on0" value="Fuel Jonny and get new features quicker - this plugin is free!"></td></tr><tr><td><select name="os0">
-				<option value="Dontate biscuits">Dontate biscuits &pound;2.50</option>
-				<option value="Treat Kimmy">Treat Kimmy &pound;5.00</option>
-				<option value="Treak Kimmy and me">Treat Kimmy and me &pound;10.00</option>
-				<option value="Development donation">Development donation &pound;25.00</option>
-			</select> </td></tr>
-			</table>
-			<input type="hidden" name="currency_code" value="GBP">
-			<input type="image" src="https://www.paypal.com/en_US/GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
-			<img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-			</form>
-			<p><strong>Money dontated since last Plugin update:</strong> Not even enough for <a href="http://twitpic.com/ydoj1" title="Kimmy">Kimmy&rsquo;s</a> treats!</p>
-
-			<div id="icon-edit-comments" class="icon32"><br /></div>
-			<h2>More Information</h2>
-			<p><strong>Having problems?</strong> <a href="http://wp-cms.com/our-wordpress-plugins/post-control/" title="Visit the Post Control homepage">Drop by the plugin homepage</a> and leave a comment at <a href="http://wp-cms.com" title="WP-CMS website">http://wp-cms.com</a></p>
-			<p><strong>Developed and maintained by:</strong> <a href="http://jonnya.net" title="I make WordPress ZOOM!">Jonnya Creative WordPress Consultant</a>, see a few of the <a href="http://jonnya.net/tools/wordpress/" title="Some of the custom WordPress sites I've built">WordPresss sites I've built</a>.</p>
-			<p><strong>Coming June 2010, my new FREE WordPress theme framework:</strong> <a href="http://wonderflux.com" title="Wonderflux Framework">Wonderflux</a></p>		
-			
-	</div>
-
-<?php }
 
 
 /**
-* Saves data from form
+* Options page ex content
 *
-* @since 2.005
+* @since 2.02
+* @lastupdate 2.1
+* 
+*/
+function wpcms_pcontrol_do_page_ex() { 
+	include("inc/wp-cms-opts-pcontrol-ex.php");	
+}
+
+
+
+/**
+* Processes main post control options 
+*
+* @since 2.0
 * @lastupdate 2.01
 * 
 */
@@ -416,10 +267,61 @@ function wpcms_pcontrol_validate($input) {
 }
 
 
+
+/**
+* Processes common extended post control options 
+*
+* @since 2.1
+* @lastupdate 2.1
+* 
+*/
+function wpcms_pcontrol_validate_ex($input) { 
+	
+	if ($input !='') {
+	
+	foreach($input as $key => $value) {
+	
+		//Only allow 'off' as option
+		if ($value == 'off') { 
+			//Set value or set nothing
+			$input[$key] = ( $input[$key] == $value ? $value : '' ); 
+		} else {
+			//Silence is golden
+			$input[$key] = '';
+		}
+		
+	}
+	
+	}
+
+return $input;
+}
+
+
+
+/**
+* If user DELETES plugin, lets delete the options like a well behaved plugin should.
+* Options are persistent on activation and deactivation - if you want to delete, use delete!
+*
+* @since 2.1
+* @lastupdate 2.1
+* 
+*/
+function wpcms_pcontrol_uninstall() {
+	delete_option('wpcms_pcontrolopts');
+	delete_option('wpcms_pcontrolopts_ex');
+}
+
+//Post Control Go!
+
+add_action('init', 'wpcms_pcontrol_ex_init');
+
 add_action('admin_init', 'wpcms_pcontrol_run');
-add_action('admin_init', 'wpcms_pcontrol_init' );
+add_action('admin_init', 'wpcms_pcontrol_init');
+
 add_action('admin_menu', 'wpcms_pcontrol_add_page');
+add_action('admin_menu', 'wpcms_pcontrol_add_page_ex');
+
 add_filter( 'plugin_row_meta', 'wpcms_pcontrol_meta', 10, 2 );
-
-
+register_uninstall_hook(__FILE__, 'wpcms_pcontrol_uninstall');
 ?>
