@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 2.0
+Version: 2.01
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
 Description: Hides unwanted items within the write/edit page and post admin area, including individual controls for different user levels.
 Author: Jonny Allbut - Jonnya Creative WordPress Consultant
@@ -11,66 +11,9 @@ License: GPL
 
 /*
 
-=== VERSION HISTORY ===
+View readme.txt for full documentation or view documentation at http://wordpress.org/extend/plugins/wp-cms-post-control
 
-0.1 Jul 2008	- First version, non-public beta testing version
-0.2 Jul 2008	- Public release 1
-0.3 Jul 2008	- Public release 2
-0.4 Aug 2008	- Development version
-1.00 Aug 2008	- Development version
-1.01 Aug 2008	- Public release 3
-1.02 Sept 2008	- Public release 4
-1.03 Sept 2008	- Public release 5
-1.1 Sept 2008	- Development version
-1.11 Sept 2008	- Public release 6
-1.2 Dec 2008	- Public release 7
-1.2.1 Mar 2009	- Public release 8
-2.0 Mar 2010	- Public release 9
-
-=== CHANGE LOG ===
-
-0.2		- Changed text
-		- New clean-up of options table on plugin de-activation
-	
-0.3		- New admin control functionality
-		- General tidying
-	
-0.4		- Option to select uploader
-		- Option to hide revisions control
-		- Option to hide word count
-		- Option to hide Advanced Options header
-		- Fixed page custom field control
-		- Redesigned admin page
-	
-1.00	- Control WordPress Revisions
-		- Control WordPress Autosave
-		
-1.01	- Insert message panel
-
-1.02	- Bug fixes, may improve compatibility with different server configs.
-
-1.03	- Bug fix to options fields, introduced in 1.02 - sorry!
-		- After comments feedback, changed and documented admin control
-		
-1.1		- Found conflict with options variables declaired within a theme functions file
-		- Confilicting PHP variables for reference - 'options' and 'newoptions'
-		- Should solve conflicts with wrongly coded variables from other plugins/themes
-		
-1.11	- Remove redundant preview code
-		- Improved formatting for message box text and title input
-		
-1.2		- WordPress 2.7 compatibility build, re-write plugin controls to support new 'Crazy Horse' interface
-		- Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i> 
-		- Changed option array function for more control
-		- Changed formatting of plugin options buttons
-		
-1.2.1	- WordPress 2.7 author control
-
-2.0		- Complete re-write of codebase = major efficiency improvements
-		- New code eliminates all previous reported user issues
-		- WordPress 2.9.2 compatibility updates
-		- Introduced multi-user level controls
-		- New remove media upload control
+The latest version of this plugin (along with all older versions) can be downloaded from http://wordpress.org/extend/plugins/wp-cms-post-control
 
 */
 
@@ -83,6 +26,7 @@ License: GPL
 * 
 */
 function wpcms_pcontrol_init(){
+	register_setting( 'wpcms_pcontrol_options', 'wpcms_pcontrolopts', 'wpcms_pcontrol_validate' );
 	register_setting( 'wpcms_pcontrol_options', 'wpcms_pcontrolopts', 'wpcms_pcontrol_validate' );
 }
 
@@ -180,7 +124,7 @@ function wpcms_pcontrol_do_page() { ?>
 				<?php
 				$mypagecontrols = array(
 				'Attributes' => 'pageparentdiv', 
-				'Author' => 'pageauthordiv', 
+				'Author (if multiple)' => 'pageauthordiv', 
 				'Custom Fields' => 'postcustom',
 				'Discussion' => 'commentstatusdiv', 
 				'Revisions' => 'revisionsdiv'
@@ -223,7 +167,7 @@ function wpcms_pcontrol_do_page() { ?>
 			
 				<?php
 				$mypostcontrols = array( 
-				'Author' => 'authordiv',
+				'Author (if multiple)' => 'authordiv',
 				'Category' => 'categorydiv', 
 				'Comments' => 'commentsdiv', 
 				'Custom fields' => 'postcustom', 
@@ -345,11 +289,10 @@ function wpcms_pcontrol_do_page() { ?>
 			<input type="hidden" name="hosted_button_id" value="2XJCF5U6KUNTC">
 			<table>
 			<tr><td><input type="hidden" name="on0" value="Fuel Jonny and get new features quicker - this plugin is free!"></td></tr><tr><td><select name="os0">
-				<option value="Dontate sweets">Dontate sweets &pound;1.00</option>
-				<option value="Donate cake">Donate cake &pound;5.00</option>
-				<option value="Donate steak">Donate steak &pound;10.00</option>
-				<option value="Donate goodies">Donate goodies &pound;25.00</option>
-				<option value="Ultimate karma">Ultimate karma &pound;50.00</option>
+				<option value="Dontate biscuits">Dontate biscuits &pound;2.50</option>
+				<option value="Treat Kimmy">Treat Kimmy &pound;5.00</option>
+				<option value="Treak Kimmy and me">Treat Kimmy and me &pound;10.00</option>
+				<option value="Development donation">Development donation &pound;25.00</option>
 			</select> </td></tr>
 			</table>
 			<input type="hidden" name="currency_code" value="GBP">
@@ -373,7 +316,7 @@ function wpcms_pcontrol_do_page() { ?>
 * Saves data from form
 *
 * @since 2.005
-* @lastupdate 2.016
+* @lastupdate 2.01
 * 
 */
 function wpcms_pcontrol_validate($input) {	
@@ -388,10 +331,10 @@ function wpcms_pcontrol_validate($input) {
 		$editormatch = "/_page_editor/";
 		
 		if (preg_match($adminmatch, $key)) {
-		    $pc_administrator_pageopsall[] = $value;
+		    $pc_administrator_pageopsall[] = wp_kses_data($value);
 	
 		} elseif (preg_match($editormatch, $key)) {
-			$pc_editor_pageopsall[] = $value;
+			$pc_editor_pageopsall[] = wp_kses_data($value);
 	
 		}
 		
@@ -414,17 +357,17 @@ function wpcms_pcontrol_validate($input) {
 		$contributormatch = "/_post_contributor/";	
 		
 		if (preg_match($adminmatch, $key)) {
-		    $pc_administrator_postopsall[] = $value;
+		    $pc_administrator_postopsall[] = wp_kses_data($value);
 		    //print_r($pc_administrator_postopsall);
 	
 		} elseif (preg_match($editormatch, $key)) {
-			$pc_editor_postopsall[] = $value;
+			$pc_editor_postopsall[] = wp_kses_data($value);
 	
 		} elseif (preg_match($authormatch, $key)) {
-			$pc_author_postopsall[] = $value;
+			$pc_author_postopsall[] = wp_kses_data($value);
 	
 		} elseif (preg_match($contributormatch, $key)) {
-			$pc_contributor_postopsall[] = $value;
+			$pc_contributor_postopsall[] = wp_kses_data($value);
 	
 		}
 	
@@ -449,16 +392,16 @@ function wpcms_pcontrol_validate($input) {
 		$contributormatch = "/_wpcore_contributor/";	
 		
 		if (preg_match($adminmatch, $key)) {
-		    $pc_administrator_wpcoreopsall[] = $value;
+		    $pc_administrator_wpcoreopsall[] = wp_kses_data($value);
 	
 		} elseif (preg_match($editormatch, $key)) {
-			$pc_editor_wpcoreopsall[] = $value;
+			$pc_editor_wpcoreopsall[] = wp_kses_data($value);
 	
 		} elseif (preg_match($authormatch, $key)) {
-			$pc_author_wpcoreopsall[] = $value;
+			$pc_author_wpcoreopsall[] = wp_kses_data($value);
 	
 		} elseif (preg_match($contributormatch, $key)) {
-			$pc_contributor_wpcoreopsall[] = $value;
+			$pc_contributor_wpcoreopsall[] = wp_kses_data($value);
 
 		}
 	

@@ -1,9 +1,9 @@
 === WP-CMS Post Control ===
 Contributors: Jonnyauk, CMSBuilder 
 Tags: post, page, metabox, cms
-Requires at least: 2.8.2
+Requires at least: 2.9
 Tested up to: 3.0-beta
-Stable tag: 2.0
+Stable tag: 2.01
 
 Hide unwanted items from different user levels when they are writing and editing posts and pages.
 
@@ -58,7 +58,11 @@ You should go to the options page and re-save your Post Control options to refre
 
 == Frequently Asked Questions ==
 
-= I used versions of this plugin prior to v2 and sometimes the controls wouldn't re-appear once deactivated. Have you fixed this? =
+= I'm using v2.0 and I have some error messages appear at the top of the screen. =
+
+**YES!** Version 2.01 (and above) fixes this glitch - thanks for the feedback!
+
+= I used versions of this plugin prior to v2 and sometimes the controls wouldn't re-appear once deactivated. =
 
 **YES!** Version 2 (and above) is a complete re-write, using a new method to remove the controls. Because of this, these issues are now completely resolved.
 
@@ -84,7 +88,7 @@ These controls are going to be reinstated in future versions.
 
 = It's not working! =
 
-**Make sure you are using the latest version!** V2.0 is designed for WordPress 2.8 and above, and is specifically optimised for WordPress 2.9 and above. It has not been tested on anything lower than 2.8 and if you are running a lower version of WordPress than this - it really is time to upgrade!
+**Make sure you are using the latest version!** V2.0 is designed for WordPress 2.9 and above. If you are using a version older than that, you really should think about upgrading!
 
 Ensure you have the plugin installed in the correct directory - you should have a directory called WP-CMS-post-control in your plugins directory.
 
@@ -103,6 +107,11 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 3. An example of a customised write/edit page - much simpler to use for all your users and clients!
 
 == Changelog ==
+
+= 2.01 = 
+* Tenth public release (20th March 2010)
+* Fixed bug when values empty
+* Amended data sanitisation input
 
 = 2.0 = 
 * Ninth public release (19th March 2010)
@@ -172,6 +181,10 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Included clean-up of database on de-activation.
 
 == Upgrade Notice ==
+
+
+= 2.01 =
+Please upgrade to the latest version with full WordPress 2.9 and above compatibility and to fix previous user issues reported.
 
 = 2.0 =
 Please upgrade to the latest version with full WordPress 2.9 and above compatibility and to fix previous user issues reported.

@@ -7,7 +7,7 @@ class wpcms_pcontrol {
 	* Executes on 'edit page' and 'new page'
 	*
 	* @since 2.001
-	* @lastupdate 2.012
+	* @lastupdate 2.002
 	* 
 	*
 	*/  
@@ -35,7 +35,7 @@ class wpcms_pcontrol {
 	* Executes on 'edit page' and 'new page'
 	*
 	* @since 2.001
-	* @lastupdate 2.012
+	* @lastupdate 2.002
 	*
 	*
 	*/  
