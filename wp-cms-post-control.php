@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 2.1
+Version: 2.11
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
 Description: Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 Author: Jonnya Creative WordPress Consultant
@@ -57,7 +57,7 @@ function wpcms_pcontrol_run() {
 * Run Post Control extended functions
 *
 * @since 2.1
-* @lastupdate 2.1
+* @lastupdate 2.11
 * 
 */
 function wpcms_pcontrol_ex_init(){
@@ -68,16 +68,21 @@ function wpcms_pcontrol_ex_init(){
 	
 	foreach ($options as $key => $value) {
 		
-		if ( $key == 'revisions' && $value == 'off' ) {
-			@remove_action ( 'pre_post_update', 'wp_save_post_revision' );
-		}
+		//Check for some options
+		if ($key != '') {
 		
-		if ( $key == 'flashupload' && $value == 'off' ) {			
-			add_filter('flash_uploader', array($ex_doit, 'pccore_false'), 5);
-		}
+			if ( $key == 'revisions' && $value == 'off' ) {
+				@remove_action ( 'pre_post_update', 'wp_save_post_revision' );
+			}
 			
-		if ( $key == 'autosave' && $value == 'off' ) {
-			wp_deregister_script('autosave');
+			if ( $key == 'flashupload' && $value == 'off' ) {			
+				add_filter('flash_uploader', array($ex_doit, 'pccore_false'), 5);
+			}
+				
+			if ( $key == 'autosave' && $value == 'off' ) {
+				wp_deregister_script('autosave');
+			}
+			
 		}
 		
 	}
