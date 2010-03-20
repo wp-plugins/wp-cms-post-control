@@ -7,7 +7,7 @@ class wpcms_pcontrol {
 	* Executes on 'edit page' and 'new page'
 	*
 	* @since 2.001
-	* @lastupdate 2.002
+	* @lastupdate 2.012
 	* 
 	*
 	*/  
@@ -35,7 +35,7 @@ class wpcms_pcontrol {
 	* Executes on 'edit page' and 'new page'
 	*
 	* @since 2.001
-	* @lastupdate 2.002
+	* @lastupdate 2.01
 	*
 	*
 	*/  
@@ -67,7 +67,7 @@ class wpcms_pcontrol_engine {
 	* Loops through array of supplied values and removes meta boxes from posts/pages
 	*
 	* @since 2.007
-	* @lastupdate 2.010
+	* @lastupdate 2.01
 	* 
 	*
 	* @param xx
@@ -78,8 +78,13 @@ class wpcms_pcontrol_engine {
 		// 'pageparentdiv' which is set to 'advanced'
 		$definition = ($whichbox == 'pageparentdiv') ? "advanced" : "normal";
 
-		foreach($whichbox as $which) {
-			remove_meta_box(''.$which.'', ''.$whichtype.'', ''.$definition.''); 
+		//Check for some values
+		if ($whichbox != '') {
+
+			foreach($whichbox as $which) {
+				remove_meta_box(''.$which.'', ''.$whichtype.'', ''.$definition.''); 
+			}
+		
 		}
 		
 	}
@@ -89,7 +94,7 @@ class wpcms_pcontrol_engine {
 	* Better to remove than just hide with CSS, people have browser CSS editors!!
 	*
 	* @since 2.07
-	* @lastupdate 2.010
+	* @lastupdate 2.01
 	* 
 	*
 	* @param $whichbox = which function to remove
@@ -97,8 +102,13 @@ class wpcms_pcontrol_engine {
 	*/  
 	function pccore_functionremove($whichfunc) {
 
-		foreach($whichfunc as $which) {
-			remove_action( ''.$which.'', ''.$which.'' );
+	//Check for some values
+		if ($whichfunc != '') {
+		
+			foreach($whichfunc as $which) {
+				remove_action( ''.$which.'', ''.$which.'' );
+			}
+			
 		}
 	}
 
