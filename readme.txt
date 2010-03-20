@@ -1,6 +1,6 @@
 === WP-CMS Post Control ===
 Contributors: Jonnyauk, CMSBuilder 
-Tags: post, page, metabox, cms
+Tags: post, page, metabox, autosave, revisions, flash, uploader, cms, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload
 Requires at least: 2.9
 Tested up to: 3.0-beta
 Stable tag: 2.1
