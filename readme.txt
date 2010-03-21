@@ -3,7 +3,7 @@ Contributors: Jonnyauk, CMSBuilder
 Tags: post, page, metabox, autosave, revisions, flash, uploader, cms, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload
 Requires at least: 2.9
 Tested up to: 3.0-beta
-Stable tag: 2.11
+Stable tag: 2.12
 
 Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 
@@ -11,7 +11,9 @@ Hides unwanted items within the write/edit page and post admin area for each use
 
 **Post Control** from <a href="http://wp-cms.com/">WordPress CMS Modifications</a> gives you complete control over your write options **for every user level/role**. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content.
 
-Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options for instance - now you can decide what users can see and use.
+Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options... now you can decide what users can see and use!
+
+You can also disable autosaves, revisions and disable the Flash uploader.
 
 **New to version 2** is the ability to hide different items for each user role - administrator, editor, author and even contributor. 
 
@@ -21,23 +23,23 @@ You can control the display of the following post options for each role level:
 * Post Categories
 * Post Excerpt
 * Post Trackbacks
-* Post Custom fields
+* Post Custom Fields
 * Post Discussion
-* Post Comment & ping options
+* Post Comment & Ping Options
 * Post Author
 
 You can control the display of the following page options:
 
-* Page Custom fields
+* Page Custom Fields
 * Page Discussion
-* Page Comment & ping options
+* Page Comment & Ping Options
 * Page Attributes
 
 You can control the display of the following global post/page options:
 
 * Post/Page Media upload
-* Disable autosave
-* Disable post revisions
+* Disable Autosave
+* Disable Post Revisions
 * Disable flash uploader and just use browser uploader
 
 == Installation ==
@@ -62,9 +64,9 @@ The automatic plugin update feature of WordPress works fine with this plugin. If
 
 == Frequently Asked Questions ==
 
-= I'm using v2.0 and I have some error messages appear at the top of the screen. =
+= I'm using v2.x and I have some error messages appear at the top of the screen. =
 
-2.11 (and above) fixes this glitch - thanks for the feedback!
+2.12 (and above) fixes this glitch - thanks for the feedback!
 
 = I used versions of this plugin prior to v2 and sometimes the controls wouldn't re-appear once deactivated. =
 
@@ -82,7 +84,7 @@ The automatic plugin update feature of WordPress works fine with this plugin. If
 
 The global options you set in the main WordPress options are used.
 
-= How do I delete the option(s) out of my database perminantely?
+= How do I delete the option(s) out of my database permanently? =
 
 In v2.1 and above just dectivate the plugin and then delete it using the WordPress plugin page option (not just of your server via FTP!). When the plugin is deleted through WordPress, it also deletes the option(s) from the database options table that are created.
 
@@ -92,7 +94,7 @@ In v2.1 the options are set to be persistent - so if you deactivate the plugin a
 
 = I installed v.2.0 and I dont have autosave and other options =
 
-These are now restored in v2.1 and above. Click on the **core functions** link at the top of the screen to turn off autosaves, revisions and the Flash uploader.
+These are now restored in v2.1 and above. Click on the **core functions** link at the top of the screen, or **Post Control Core** in the sidebar under **Settings** to turn off autosaves, revisions and the Flash uploader.
 
 = It's not working! =
 
@@ -117,9 +119,13 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 
 == Changelog ==
 
+= 2.12 = 
+* 23th March 2010
+* Bug that caused error messages fixed
+
 = 2.11 = 
 * 22th March 2010
-* Bug swatting
+* Bug hunt
 
 = 2.1 = 
 * 22th March 2010
@@ -128,7 +134,6 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Added new disable revisions control
 * Added new disable flash uploader control
 * Added cleanup of options on delete of plugin (not deactivation)
-* Bug swatting
 
 = 2.01 = 
 * 20th March 2010
