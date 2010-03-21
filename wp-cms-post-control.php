@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP-CMS Post Control
 Version: 2.12
-Plugin URI: http://wp-cms.com/our-wordpress-plugins/post-control/
+Plugin URI: http://wp-cms.com/our-wordpress-plugins/wp-cms-post-control-plugin/
 Description: Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 Author: Jonnya Creative WordPress Consultant
 Author URI: http://jonnya.net
