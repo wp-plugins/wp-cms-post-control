@@ -209,6 +209,9 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 
 == Upgrade Notice ==
 
+= 2.12 =
+Please upgrade for bug fixes!
+
 = 2.11 =
 Please upgrade for bug fixes!
 
