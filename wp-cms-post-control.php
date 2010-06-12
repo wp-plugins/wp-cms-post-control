@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 2.12
+Version: 2.2
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/wp-cms-post-control-plugin/
 Description: Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 Author: Jonnya Creative WordPress Consultant
@@ -12,7 +12,7 @@ License: GPL
 /****
 
 View readme.txt for full documentation or view documentation at http://wordpress.org/extend/plugins/wp-cms-post-control
-The latest version of this plugin (along with all other versions) can be downloaded from http://wordpress.org/extend/plugins/wp-cms-post-control
+Official download repository: http://wordpress.org/extend/plugins/wp-cms-post-control - The latest version (and all older versions) of Post Control should always be downloaded from here only.
 
 ****/
 
@@ -81,6 +81,42 @@ function wpcms_pcontrol_ex_init(){
 				
 			if ( $key == 'autosave' && $value == 'off' ) {
 				wp_deregister_script('autosave');
+			}
+				
+		}
+		
+	}
+	
+}
+
+
+
+/**
+* Run Post Control extended functions that need to be run early
+*
+* @since 2.2
+* @lastupdate 2.2
+* 
+*/
+function wpcms_pcontrol_ex_revisions(){
+	
+	$ex_doit = new wpcms_pcontrol_engine;
+	
+	$options = get_option('wpcms_pcontrolopts_ex');
+	
+	//Check for some options
+	if (is_array($options)) {
+	
+		foreach ($options as $key => $value) {
+				
+			if ( $key == 'revision_num' && $value != '' ) {
+				
+				if ($value == 0) {
+					//Saved as unlimited so do nothing
+				} else {
+					$limit_revisions = $value;
+					define('WP_POST_REVISIONS', $limit_revisions );
+				}
 			}
 				
 		}
@@ -172,28 +208,32 @@ function wpcms_pcontrol_do_page_ex() {
 * Processes main post control options 
 *
 * @since 2.0
-* @lastupdate 2.01
+* @lastupdate 2.2
 * 
 */
 function wpcms_pcontrol_validate($input) {	
 
-	// PAGE OPERATIONS 
-	$pc_administrator_pageopsall = array();
-	$pc_editor_pageopsall = array();
+	if ($input !='') { // Catch if no options selected
 	
-	foreach($input as $key => $value) {
-
-		$adminmatch = "/_page_administrator/";
-		$editormatch = "/_page_editor/";
+		// PAGE OPERATIONS 
+		$pc_administrator_pageopsall = array();
+		$pc_editor_pageopsall = array();
 		
-		if (preg_match($adminmatch, $key)) {
-		    $pc_administrator_pageopsall[] = wp_kses_data($value);
+		foreach($input as $key => $value) {
 	
-		} elseif (preg_match($editormatch, $key)) {
-			$pc_editor_pageopsall[] = wp_kses_data($value);
-	
+			$adminmatch = "/_page_administrator/";
+			$editormatch = "/_page_editor/";
+			
+			if (preg_match($adminmatch, $key)) {
+			    $pc_administrator_pageopsall[] = wp_kses_data($value);
+		
+			} elseif (preg_match($editormatch, $key)) {
+				$pc_editor_pageopsall[] = wp_kses_data($value);
+		
+			}
+			
 		}
-		
+	
 	}
 	
 	$input['pc_administrator_pageops'] = $pc_administrator_pageopsall;
@@ -277,7 +317,7 @@ function wpcms_pcontrol_validate($input) {
 * Processes common extended post control options 
 *
 * @since 2.1
-* @lastupdate 2.1
+* @lastupdate 2.2
 * 
 */
 function wpcms_pcontrol_validate_ex($input) { 
@@ -285,9 +325,20 @@ function wpcms_pcontrol_validate_ex($input) {
 	if ($input !='') {
 	
 	foreach($input as $key => $value) {
+		
+			//Process the advanced option first
+		if ($key == 'revision_num') {
+			//Only allow a number, nothing else!
+			if (is_numeric($value)) {
+				$input[$key] = $value;
+			} else { 
+			//Silence is golden
+				$input[$key] = '';
+			}	
+		}
 	
 		//Only allow 'off' as option
-		if ($value == 'off') { 
+		elseif ($value == 'off') { 
 			//Set value or set nothing
 			$input[$key] = ( $input[$key] == $value ? $value : '' ); 
 		} else {
@@ -317,7 +368,12 @@ function wpcms_pcontrol_uninstall() {
 	delete_option('wpcms_pcontrolopts_ex');
 }
 
+
+
 //Post Control Go!
+
+//This one seems to need to be called early
+add_action( 'plugins_loaded', 'wpcms_pcontrol_ex_revisions' );
 
 add_action('init', 'wpcms_pcontrol_ex_init');
 

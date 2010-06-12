@@ -16,6 +16,8 @@
 
 	<h3><a href="<?php echo admin_url('options-general.php?page=wpcms_pcontrol'); ?>" title="Main post control options">Post Control</a> | <a href="<?php echo admin_url('options-general.php?page=wpcms_pcontrol_ex'); ?>" title="Core WordPress publishing functions">Core Functions</a></h3>
 
+	<div id="icon-tools" class="icon32"><br /></div>
+	<h2>Core WordPress publishing functions</h2>
 	<p>Use these controls to configure the core publishing behaviour of WordPress.</p>
 	<p><strong>Disable autosave</strong> - Stops this interpution when you are writing content.</p>
 	<p><strong>Disable revisions</strong> - Stops more post revisions being saved - existing revisions will be kept.</p>
@@ -68,7 +70,56 @@
 			}
 			?>
 		
-		</table>	
+		</table>
+		
+
+
+		<div id="icon-tools" class="icon32"><br /></div>
+		<h2>Limit revisions</h2>
+		<p>If you have revisions enabled, stop clogging up your database and revisions system by setting a maximum number of revisions to be saved.</p>
+
+		<table class="form-table">	
+		
+			<tr>
+				<th scope="row">How many revisions to save</th>
+				<td>
+
+			<select name="wpcms_pcontrolopts_ex[revision_num]" id="asave">
+				<option value="<?php echo $options['revision_num']; ?>"> 
+				<?php 
+				//Setup nice display of saved value
+				if ($options['revision_num'] == '0' || !$options['revision_num']) {
+					echo "No limit";
+				} else {
+					echo $options['revision_num'];
+					if ($options['revision_num'] == '1') { echo ' revision'; } else { echo ' revisions'; }
+				}
+				 ?>
+				</option>
+				<option class="level-0" value="1">1</option>
+				<option class="level-0" value="2">2</option>
+				<option class="level-0" value="3">3</option>
+				<option class="level-0" value="4">4</option>
+				<option class="level-0" value="5">5</option>
+				<option class="level-0" value="6">6</option>
+				<option class="level-0" value="7">7</option>
+				<option class="level-0" value="8">8</option>
+				<option class="level-0" value="9">9</option>
+				<option class="level-0" value="10">10</option>
+				<option class="level-0" value="11">11</option>
+				<option class="level-0" value="12">12</option>
+				<option class="level-0" value="13">13</option>
+				<option class="level-0" value="14">14</option>
+				<option class="level-0" value="15">15</option>
+				<option class="level-0" value="0">No limit</option>
+			</select>
+
+				</td>
+			</tr>
+		
+		</table>
+
+
 
 		<p class="submit">
 		<input type="submit" class="button-primary" value="<?php _e('Save Post Control options') ?>" />

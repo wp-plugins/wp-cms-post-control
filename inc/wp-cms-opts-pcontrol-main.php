@@ -105,7 +105,8 @@
 			'Excerpt' => 'postexcerpt', 
 			'Revisions' => 'revisionsdiv', 
 			'Tags' => 'tagsdiv-post_tag', 
-			'Trackbacks' => 'trackbacksdiv'
+			'Trackbacks' => 'trackbacksdiv',
+			'Post thumbnail' => 'postimagediv'
 			);		
 			
 			//Generate form from array

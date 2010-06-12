@@ -1,9 +1,9 @@
 === WP-CMS Post Control ===
-Contributors: Jonnyauk, CMSBuilder 
+Contributors: Jonnyauk
 Tags: post, page, metabox, autosave, revisions, flash, uploader, cms, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload
 Requires at least: 2.9
-Tested up to: 3.0-beta
-Stable tag: 2.12
+Tested up to: 3.0
+Stable tag: 2.2
 
 Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 
@@ -14,6 +14,8 @@ Hides unwanted items within the write/edit page and post admin area for each use
 Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options... now you can decide what users can see and use!
 
 You can also disable autosaves, revisions and disable the Flash uploader.
+
+NEW - Control how many revisions are saved when you are amending your content - stops your database getting clogged up!
 
 **New to version 2** is the ability to hide different items for each user role - administrator, editor, author and even contributor. 
 
@@ -37,6 +39,7 @@ You can control the display of the following page options:
 
 You can control the display of the following global post/page options:
 
+* NEW - Limit the number of post and page revisions saved
 * Post/Page Media upload
 * Disable Autosave
 * Disable Post Revisions
@@ -66,7 +69,7 @@ The automatic plugin update feature of WordPress works fine with this plugin. If
 
 = I'm using v2.x and I have some error messages appear at the top of the screen. =
 
-2.12 (and above) fixes this glitch - thanks for the feedback!
+2.2 (and above) fixes this glitch - thanks for the feedback! The last nag was caught in v2.2 when no options were selected.
 
 = I used versions of this plugin prior to v2 and sometimes the controls wouldn't re-appear once deactivated. =
 
@@ -98,7 +101,7 @@ These are now restored in v2.1 and above. Click on the **core functions** link a
 
 = It's not working! =
 
-**Make sure you are using the latest version!** V2.0 is designed for WordPress 2.9 and above. If you are using a version older than that, you will have to use an older version of the plugin - and really should think about upgrading, this plugin is ready for you!
+**Make sure you are using the latest version!** V2.0+ is designed for WordPress 2.9 and above. If you are using a version older than that, you will have to use an older version of the plugin - and really should think about upgrading, this plugin is ready for you!
 
 Ensure you have the plugin installed in the correct directory - you should have a directory called **wp-cms-post-control** in your plugins directory. Inside there should be another directory called **inc**.
 
@@ -118,6 +121,11 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 4. An example of a customised write/edit post - much simpler to use for all your users and clients!
 
 == Changelog ==
+
+= 2.2 = 
+* 12th June 2010
+* Bug that caused error messages hwne no options selected fixed
+* Introduced new revisions number control
 
 = 2.12 = 
 * 23th March 2010
@@ -208,6 +216,9 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Included clean-up of database on de-activation.
 
 == Upgrade Notice ==
+
+= 2.2 =
+Please upgrade to fix minor bug and get the new feature of limiting post revisions!
 
 = 2.12 =
 Please upgrade for bug fixes!
