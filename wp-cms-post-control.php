@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 2.2
+Version: 2.21
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/wp-cms-post-control-plugin/
 Description: Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 Author: Jonnya Creative WordPress Consultant
@@ -131,12 +131,12 @@ function wpcms_pcontrol_ex_revisions(){
 * Adds options page
 *
 * @since 2.0
-* @lastupdate 2.0
+* @lastupdate 2.21
 * 
 */
 function wpcms_pcontrol_add_page() {
-	// Access level is set here - level 10 = admin only, could change if required!
-	add_options_page('WP-CMS Post Control Options', 'Post Control', 10, 'wpcms_pcontrol', 'wpcms_pcontrol_do_page');
+	// Access level is set here - set to 'edit users' which is logical for post control operation and is usually an admin only role function
+	add_options_page('WP-CMS Post Control Options', 'Post Control', 'edit_users', 'wpcms_pcontrol', 'wpcms_pcontrol_do_page');
 }
 
 
@@ -145,12 +145,12 @@ function wpcms_pcontrol_add_page() {
 * Adds extended core options page
 *
 * @since 2.1
-* @lastupdate 2.1
+* @lastupdate 2.21
 * 
 */
 function wpcms_pcontrol_add_page_ex() {
-	// Access level is set here - level 10 = admin only, could change if required!
-	add_options_page('WP-CMS Post Control Core Functions', 'Post Control Core', 10, 'wpcms_pcontrol_ex', 'wpcms_pcontrol_do_page_ex');
+	// Access level is set here - set to 'edit users' which is logical for post control operation and is usually an admin only role function
+	add_options_page('WP-CMS Post Control Core Functions', 'Post Control Core', 'edit_users', 'wpcms_pcontrol_ex', 'wpcms_pcontrol_do_page_ex');
 }
 
 

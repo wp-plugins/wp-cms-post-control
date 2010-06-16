@@ -2,8 +2,8 @@
 Contributors: Jonnyauk
 Tags: post, page, metabox, autosave, revisions, flash, uploader, cms, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload
 Requires at least: 2.9
-Tested up to: 3.0
-Stable tag: 2.2
+Tested up to: 3.0-RC3
+Stable tag: 2.21
 
 Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 
@@ -121,6 +121,11 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 4. An example of a customised write/edit post - much simpler to use for all your users and clients!
 
 == Changelog ==
+
+= 2.21 = 
+* 16th June 2010
+* Tested upto WordPress 3.0-RC3
+* Fully prepared and ready for WordPress 3.0 launch, whoot!
 
 = 2.2 = 
 * 12th June 2010
