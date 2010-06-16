@@ -125,11 +125,12 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 = 2.21 = 
 * 16th June 2010
 * Tested upto WordPress 3.0-RC3
+* Amended roles and capabilities
 * Fully prepared and ready for WordPress 3.0 launch, whoot!
 
 = 2.2 = 
 * 12th June 2010
-* Bug that caused error messages hwne no options selected fixed
+* Bug that caused error messages when no options selected fixed
 * Introduced new revisions number control
 
 = 2.12 = 
