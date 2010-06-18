@@ -2,8 +2,8 @@
 Contributors: Jonnyauk
 Tags: post, page, metabox, autosave, revisions, flash, uploader, cms, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload
 Requires at least: 2.9
-Tested up to: 3.0-RC3
-Stable tag: 2.21
+Tested up to: 3.0
+Stable tag: 2.22
 
 Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 
@@ -11,15 +11,13 @@ Hides unwanted items within the write/edit page and post admin area for each use
 
 **Post Control** from <a href="http://wp-cms.com/">WordPress CMS Modifications</a> gives you complete control over your write options **for every user level/role**. It not only allows you to hides unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content.
 
-Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options... now you can decide what users can see and use!
+Simplify the and customise the write post and page areas of WordPress and just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options... now you can decide what level of users can see and use!
 
 You can also disable autosaves, revisions and disable the Flash uploader.
 
-NEW - Control how many revisions are saved when you are amending your content - stops your database getting clogged up!
+**NEW** - Control how many revisions are saved when you are amending your content - stops your database getting clogged up!
 
-**New to version 2** is the ability to hide different items for each user role - administrator, editor, author and even contributor. 
-
-You can control the display of the following post options for each role level:
+You can control the display of the following post options for each role level (administrator, editor, author and contributor):
 
 * Post Tags
 * Post Categories
@@ -39,7 +37,7 @@ You can control the display of the following page options:
 
 You can control the display of the following global post/page options:
 
-* NEW - Limit the number of post and page revisions saved
+* **NEW** - Limit the number of post and page revisions saved
 * Post/Page Media upload
 * Disable Autosave
 * Disable Post Revisions
@@ -121,6 +119,10 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 4. An example of a customised write/edit post - much simpler to use for all your users and clients!
 
 == Changelog ==
+
+= 2.22 = 
+* 18th June 2010
+* Fully tested and compatible with WordPress 3.0
 
 = 2.21 = 
 * 16th June 2010
@@ -222,6 +224,12 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Included clean-up of database on de-activation.
 
 == Upgrade Notice ==
+
+= 2.22 =
+Please upgrade for full WordPress 3.0 compatibility and get the new feature of limiting post revisions!
+
+= 2.21 =
+Please upgrade to fix minor bug and get the new feature of limiting post revisions!
 
 = 2.2 =
 Please upgrade to fix minor bug and get the new feature of limiting post revisions!
