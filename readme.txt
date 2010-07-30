@@ -1,9 +1,9 @@
 === WP-CMS Post Control ===
 Contributors: Jonnyauk
 Tags: post, page, metabox, autosave, revisions, flash, uploader, cms, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload
-Requires at least: 2.9
+Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 2.22
+Stable tag: 2.3
 
 Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
 
@@ -61,13 +61,23 @@ If you want to manually upload and install:
 
 The automatic plugin update feature of WordPress works fine with this plugin. If your server supports it you should certainly use this as it's the easiest way to keep your plugins up-to-date.
 
-**IMPORTANT** When you upgrade, you should go to the options page and re-save your Post Control options to refresh the settings.
+If you are updating via FTP, simply delete the entire folder called 'wp-cms-post-control' from your plugins directory and replace with the newest version.
+
+**IMPORTANT** When you upgrade, you should go to the options page and re-save your Post Control options to refresh the settings. In most cases everything will be fine, but this will ensure that if there have been any updates to WordPress the plugin will refresh and update the relevant Post Control options.
 
 == Frequently Asked Questions ==
 
+= I'm using v2.2x with WordPress 3.0 - post options work but the page options do nothing! =
+
+2.3 (and above) fixes this glitch in WordPress 3.0 - with the introduction of custom post types things have changed a bit and I have now amended the plugin to accommodate this.
+
+= I'm using v2.2x with WordPress 2.9 (or below) - post options and/or other things don't work! =
+
+2.22 was the last version with WordPRess 2.9 conpatibility. If you are using an earlier version of WordPress you really should upgrade - you get lots of cool new stuff and a faster, smarter WordPress!
+
 = I'm using v2.x and I have some error messages appear at the top of the screen. =
 
-2.2 (and above) fixes this glitch - thanks for the feedback! The last nag was caught in v2.2 when no options were selected.
+2.2 (and above) fixes this glitch - thanks for the feedback!
 
 = I used versions of this plugin prior to v2 and sometimes the controls wouldn't re-appear once deactivated. =
 
@@ -120,30 +130,39 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 
 == Changelog ==
 
-= 2.22 = 
-* 18th June 2010
-* Fully tested and compatible with WordPress 3.0
+= 2.3 =
+* 31th July 2010
+* REQUIRES WORDPRESS 3.0 OR ABOVE
+* Fully tested and compatible with WordPress 3.0 post and page editors
+* Fixed another bug with no values set
+* Compatibility with WordPress 3.0 page editing
 
-= 2.21 = 
+= 2.22 =
+
+* 18th June 2010
+* LAST VERSION TO BE COMPATIBILE WITH WORDPRESS 2.9
+* WordPress 3.0 first pass compatibility
+
+= 2.21 =
 * 16th June 2010
 * Tested upto WordPress 3.0-RC3
 * Amended roles and capabilities
 * Fully prepared and ready for WordPress 3.0 launch, whoot!
 
-= 2.2 = 
+= 2.2 =
 * 12th June 2010
 * Bug that caused error messages when no options selected fixed
 * Introduced new revisions number control
 
-= 2.12 = 
+= 2.12 =
 * 23th March 2010
 * Bug that caused error messages fixed
 
-= 2.11 = 
+= 2.11 =
 * 22th March 2010
 * Bug hunt
 
-= 2.1 = 
+= 2.1 =
 * 22th March 2010
 * Added new Core Functions sub-menu page
 * Added new disable autosave control
@@ -151,12 +170,12 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Added new disable flash uploader control
 * Added cleanup of options on delete of plugin (not deactivation)
 
-= 2.01 = 
+= 2.01 =
 * 20th March 2010
 * Fixed bug when values empty
 * Amended data sanitisation input
 
-= 2.0 = 
+= 2.0 =
 * 19th March 2010
 * Complete re-write of codebase = major efficiency improvements
 * New code eliminates all previous reported user issues
@@ -171,7 +190,7 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 = v1.2 =
 * 17th December 2008
 * WordPress 2.7 compatibility build, re-write plugin controls to support new 'Crazy Horse' interface
-* Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i> 
+* Fix basic text formatting in custom message box, remove strip slashes to allow basic formatting like <b> and <i>
 * Changed option array function for more control
 * Changed formatting of plugin options buttons
 
@@ -224,6 +243,9 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Included clean-up of database on de-activation.
 
 == Upgrade Notice ==
+
+= 2.3 =
+REQUIRES WORDPRESS 3.0 or above - please update to fix page controls bug!
 
 = 2.22 =
 Please upgrade for full WordPress 3.0 compatibility and get the new feature of limiting post revisions!
