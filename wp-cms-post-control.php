@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: WP-CMS Post Control
-Version: 2.4
+Version: 2.5
 Plugin URI: http://wp-cms.com/our-wordpress-plugins/wp-cms-post-control-plugin/
-Description: Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
+Description: Hides unwanted items within the write/edit screens and options for each user role. Also controls autosave, revisions and flash uploader.
 Author: Jonnya Creative WordPress Consultant
 Author URI: http://jonnya.net
 License: GPL
@@ -15,11 +15,11 @@ View readme.txt in this directory for full documentation or view documentation o
 Official download repository: http://wordpress.org/extend/plugins/wp-cms-post-control - The latest version (and all older versions) of Post Control should always be downloaded from here only.
 
 NOTE COMPATIBILITY VERSIONS
-v2.4 - Latest version - requires WordPress 3.x minimum
+v2.5 - Latest version - requires WordPress 3.1 minimum
 - The latest version of this plugin always supports the current latest public release of WordPress
 - Compatibility with older versions is not supported
 - You really should upgrade your version of WordPress to make it faster, secure and get more features!
-
+v2.4 - Last version to be compatible with WordPress 3.0x (no longer supported)
 v2.22 - Last version to be compatible with WordPress 2.9x (no longer supported)
 v1.21 - Last version to be compatible with WordPress 2.8x (no longer supported)
 

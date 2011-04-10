@@ -1,11 +1,11 @@
 === WP-CMS Post Control ===
 Contributors: Jonnyauk
-Tags: post, page, metabox, autosave, revisions, flash, uploader, cms, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload
+Tags: post, page, metabox, autosave, revisions, flash, uploader, cms, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload, slug, featured image, format
 Requires at least: 3.0
-Tested up to: 3.0.1
-Stable tag: 2.4
+Tested up to: 3.1
+Stable tag: 2.5
 
-Hides unwanted items within the write/edit page and post admin area for each user role. Also controls autosave, revisions and flash uploader.
+Hides unwanted items within the write/edit page and post admin area for each user role (including Screen Options tab). Also controls autosave, revisions and flash uploader.
 
 == Description ==
 
@@ -19,25 +19,32 @@ It also features other advanced configuration options like disable autosaves, re
 
 You can control the display of the following post options for each role level (administrator, editor, author and contributor):
 
-* Post Tags
+* Post Author (if multiple)
 * Post Categories
-* Post Excerpt
-* Post Trackbacks
-* Post Custom Fields
+* Post Comments
+* Post Custom fields
 * Post Discussion
-* Post Comment & Ping Options
-* Post Author
+* Post Excerpt
+* Post Featured Image (NEW WordPress 3.1+ support!)
+* Post Format
+* Post Revisions
+* Post Slug (NEW WordPress 3.1+ support!)
+* Post Tags
+* Post Trackbacks
 
 You can control the display of the following page options:
 
+* Page Attributes
+* Page Author (ONLY if multiple)
 * Page Custom Fields
 * Page Discussion
-* Page Comment & Ping Options
-* Page Attributes
+* Page Featured Image (NEW WordPress 3.1+ support!)
+* Page Slug (NEW WordPress 3.1+ support!)
+* Page Revisions
 
 You can control the display of the following global post/page options:
 
-* **NEW** - Limit the number of post and page revisions saved
+* Limit the number of post and page revisions saved (0-50 NEW - Increaded value by request!)
 * Post/Page Media upload
 * Disable Autosave
 * Disable Post Revisions
@@ -68,6 +75,10 @@ If you are updating via FTP, simply delete the entire folder called `wp-cms-post
 **IMPORTANT** When you upgrade, you should go to the options page and re-save your Post Control options to refresh the settings. In most cases everything will be fine, but this will ensure that if there have been any updates to WordPress the plugin will refresh and update the relevant Post Control options.
 
 == Frequently Asked Questions ==
+= My Slug and Featured image controls don't do anything? =
+
+Your WordPress theme has to specifically support these features, if they are not enabled the controls won't enable the function. Ask your theme designer to update their theme if required!
+
 = I'm using v2.x - the automatic WordPress update isn't working! =
 
 Please use version 2.4 and above to fix this glitch.
@@ -134,6 +145,14 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 4. An example of a customised write/edit post - much simpler to use for all your users and clients!
 
 == Changelog ==
+
+= 2.5 =
+* 10th April 2011
+* REQUIRES WORDPRESS 3.1 OR ABOVE
+* Create post and page control for custom post thumbnails/featured image meta panel
+* Create post and page control for slug meta panel
+* Create post control for format meta panel
+* Increased number of post revisions available as per user request to 50 (thanks!)
 
 = 2.4 =
 * 4th November 2010
@@ -254,6 +273,8 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Included clean-up of database on de-activation.
 
 == Upgrade Notice ==
+= 2.5 =
+REQUIRES WORDPRESS 3.0 or above, optimised for WordPRess 3.1 - Now supports new controls for custom post thumbnail/featured image, post format and slug in WordPress 3.1.
 
 = 2.4 =
 REQUIRES WORDPRESS 3.0 or above - please update for various fixes!

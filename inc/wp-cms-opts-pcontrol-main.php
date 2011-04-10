@@ -3,7 +3,7 @@
 * Main options page include
 *
 * @since 2.1
-* @lastupdate 2.12
+* @lastupdate 2.5
 *
 *
 */
@@ -43,6 +43,8 @@
 			'Author (ONLY if multiple)' => 'authordiv',
 			'Custom Fields' => 'postcustom',
 			'Discussion' => 'commentstatusdiv',
+			'Featured Image' => 'postimagediv',
+			'Slug' => 'slugdiv',
 			'Revisions' => 'revisionsdiv'
 			);
 
@@ -103,7 +105,10 @@
 			'Custom fields' => 'postcustom',
 			'Discussion' => 'commentstatusdiv',
 			'Excerpt' => 'postexcerpt',
+			'Featured Image' => 'postimagediv',
+			'Format' => 'formatdiv',
 			'Revisions' => 'revisionsdiv',
+			'Slug' => 'slugdiv',
 			'Tags' => 'tagsdiv-post_tag',
 			'Trackbacks' => 'trackbacksdiv'
 			);

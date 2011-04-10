@@ -105,36 +105,15 @@
 					}
 					 ?>
 					</option>
-					<option class="level-0" value="1">1</option>
-					<option class="level-0" value="2">2</option>
-					<option class="level-0" value="3">3</option>
-					<option class="level-0" value="4">4</option>
-					<option class="level-0" value="5">5</option>
-					<option class="level-0" value="6">6</option>
-					<option class="level-0" value="7">7</option>
-					<option class="level-0" value="8">8</option>
-					<option class="level-0" value="9">9</option>
-					<option class="level-0" value="10">10</option>
-					<option class="level-0" value="11">11</option>
-					<option class="level-0" value="12">12</option>
-					<option class="level-0" value="13">13</option>
-					<option class="level-0" value="14">14</option>
-					<option class="level-0" value="15">15</option>
-					<option class="level-0" value="16">16</option>
-					<option class="level-0" value="17">17</option>
-					<option class="level-0" value="18">18</option>
-					<option class="level-0" value="19">19</option>
-					<option class="level-0" value="20">20</option>
-					<option class="level-0" value="21">21</option>
-					<option class="level-0" value="22">22</option>
-					<option class="level-0" value="23">23</option>
-					<option class="level-0" value="24">24</option>
-					<option class="level-0" value="25">25</option>
-					<option class="level-0" value="26">26</option>
-					<option class="level-0" value="27">27</option>
-					<option class="level-0" value="28">28</option>
-					<option class="level-0" value="29">29</option>
-					<option class="level-0" value="30">30</option>
+
+
+					<?php
+					$i = 0;
+					do {
+					    echo '<option class="level-'.$i.'" value="'.$i.'">'.$i.'</option>';
+					    $i++;
+					} while ($i < 51);
+					?>
 					<option class="level-0" value="0">No limit</option>
 				</select>
 
