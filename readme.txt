@@ -1,11 +1,12 @@
 === WP-CMS Post Control ===
 Contributors: Jonnyauk
-Tags: post, page, metabox, autosave, revisions, flash, uploader, cms, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload, slug, featured image, format
-Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 2.5
+Tags: post, page, metabox, autosave, revisions, CMS, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload, slug, featured image, format
+Requires at least: 3.5
+Tested up to: 3.5.2
+Stable tag: 2.6
+License: GPLv2 or later
 
-Hides unwanted items within the write/edit page and post admin area for each user role (including Screen Options tab). Also controls autosave, revisions and flash uploader.
+Hides metabox controls on the write/edit post & page admin screens for each user role. Also controls autosave and revisions saved.
 
 == Description ==
 
@@ -13,7 +14,7 @@ Hides unwanted items within the write/edit page and post admin area for each use
 
 Simplify and customise the write post and page areas of WordPress to just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options... now you can decide what each individual level of user can see and use!
 
-It also features other advanced configuration options like disable autosaves, revisions and disable the Flash uploader.
+It also features other advanced configuration options like disable autosaves and limit the number of revisions saved.
 
 **NEW** - Control exactly how many revisions are saved when you are amending your content or even turn off revisions. This stops your database getting clogged up and is great when you are designing a site!
 
@@ -48,7 +49,6 @@ You can control the display of the following global post/page options:
 * Post/Page Media upload
 * Disable Autosave
 * Disable Post Revisions
-* Disable flash uploader and just use browser uploader
 
 == Installation ==
 
@@ -145,6 +145,13 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 4. An example of a customised write/edit post - much simpler to use for all your users and clients!
 
 == Changelog ==
+
+= 2.6 =
+* 10th July 2013
+* REQUIRES WORDPRESS 3.5 OR ABOVE
+* Remove legacy Flash uploader option - no longer valid or relevant
+* Added new control for comments on page edit screen
+* Changed support link to WordPress forum
 
 = 2.5 =
 * 10th April 2011
@@ -273,8 +280,12 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Included clean-up of database on de-activation.
 
 == Upgrade Notice ==
+
 = 2.5 =
-REQUIRES WORDPRESS 3.0 or above, optimised for WordPRess 3.1 - Now supports new controls for custom post thumbnail/featured image, post format and slug in WordPress 3.1.
+REQUIRES WORDPRESS 3.5 or above, new controls and small snag catches.
+
+= 2.5 =
+REQUIRES WORDPRESS 3.0 or above, optimised for WordPress 3.1 - Now supports new controls for custom post thumbnail/featured image, post format and slug in WordPress 3.1.
 
 = 2.4 =
 REQUIRES WORDPRESS 3.0 or above - please update for various fixes!

@@ -21,7 +21,6 @@
 	<p>Use these controls to configure the core publishing behaviour of WordPress.</p>
 	<p><strong>Disable autosave</strong> - Stops this interpution when you are writing content.</p>
 	<p><strong>Disable revisions</strong> - Stops more post revisions being saved - existing revisions will be kept.</p>
-	<p><strong>Disable Flash uploader</strong> - Removes Flash upload as option and forces back to browser upload type.</p>
 
 	<form method="post" action="options.php">
 		<?php
@@ -37,8 +36,7 @@
 			<?php
 			$mypagecontrols = array(
 			'Disable Autosave' => 'autosave',
-			'Disable Revisions' => 'revisions',
-			'Disable Flash uploader' => 'flashupload'
+			'Disable Revisions' => 'revisions'
 			);
 
 			//Generate form from array
@@ -127,7 +125,7 @@
 			<p><strong>You currently have revisions disabled.</strong></p>
 			<p>To limit the number of revisions saved when you are editing your content:</p>
 			<p>Untick the &lsquo;Disable Revisions&rsquo; option above and save the Post Control options.</p>
-			<p>The control will then appear here to control this.</p>
+			<p>The control will then appear to limit the number of revisions saved.</p>
 
 		<?php } ?>
 

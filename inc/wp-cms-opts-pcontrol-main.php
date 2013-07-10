@@ -43,6 +43,7 @@
 			'Author (ONLY if multiple)' => 'authordiv',
 			'Custom Fields' => 'postcustom',
 			'Discussion' => 'commentstatusdiv',
+			'Comments' => 'commentsdiv',
 			'Featured Image' => 'postimagediv',
 			'Slug' => 'slugdiv',
 			'Revisions' => 'revisionsdiv'
