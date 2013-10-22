@@ -1,6 +1,6 @@
 === WP-CMS Post Control ===
 Contributors: Jonnyauk
-Tags: post, page, metabox, autosave, revisions, CMS, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, ping, Author, upload, slug, featured image, format, word count
+Tags: post, page, metabox, autosave, revisions, Tags, Categories, Excerpt, Trackbacks, Custom fields, Discussion, Comment, Author, upload, slug, featured image, Word count
 Requires at least: 3.6
 Tested up to: 3.6
 Stable tag: 2.8
