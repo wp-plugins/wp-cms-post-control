@@ -1,26 +1,28 @@
 === WP-CMS Post Control ===
 Contributors: Jonnyauk
-Tags: post, page, metabox, autosave, revisions, tags, categories, excerpt, trackbacks, custom fields, discussion, comment, author, upload, slug, featured image, word count
+Tags: post, page, metabox, autosave, revisions, tags, categories, excerpt, trackbacks, custom fields, discussion, comment, author, upload, slug, featured image, word count, trash
 Requires at least: 3.6
-Tested up to: 3.8
-Stable tag: 2.82
+Tested up to: 3.9.1
+Stable tag: 2.9
 License: GPLv2 or later
 
-Hides metabox controls on the write/edit post & page admin screens for each user role. Also controls autosave and revisions saved.
+Hides metabox controls on the write/edit post & page admin screens for each user role. Also controls autosave, trash time and saved revisions.
 
 == Description ==
 
 **Post Control** from <a href="http://wp-cms.com/">WordPress CMS Modifications</a> gives you complete control over your write options **for every user level/role**. It not only allows you to hide unwanted items like custom fields, trackbacks, revisions etc. but also gives you a whole lot more control over how WordPress deals with creating content.
 
-Simplify and customise the write post and page areas of WordPress to just show the controls you need. Great for de-cluttering - do you really need those pingback and trackback options... now you can decide what each individual level of user can see and use!
+Simplify and customise the write post and page areas of WordPress to show just the controls you need. Great for de-cluttering - do you really need those pingback and trackback options, not using tags, want only administrators to be able to set categories... now you can decide what each individual level of user can see and use!
 
-It also features other advanced configuration options like disable autosaves and limit the number of revisions saved.
+It also features other advanced configuration options like disable autosaves, limit the number of revisions saved and how many days before trash is auto-emptied by WordPress.
+
+**NEW** - Control number of days before trash is emptied
 
 **NEW** - Remove word count on a per user basis (feature request)
 
 **NEW** - Control exactly how many revisions are saved when you are amending your content or even turn off revisions. This stops your database getting clogged up and is great when you are designing a site!
 
-You can control the display of the following post options for each role level (administrator, editor, author and contributor):
+You can control the display of the following post options for each core WordPress role (administrator, editor, author and contributor):
 
 * Post Author (if multiple)
 * Post Categories
@@ -53,6 +55,7 @@ You can control the display of the following global post/page options:
 * Post/Page Media upload
 * Disable Autosave
 * Disable Post Revisions (updated for WordPress 3.6 and above)
+* NEW - Set the number of days before the trash is auto emptied by WordPress
 
 == Installation ==
 
@@ -64,11 +67,11 @@ Simply search for 'WP-CMS Post Control' and you can install it straight from you
 
 If you want to manually upload and install:
 
-1. Get the latest version of this plugin at the <a href="http://wordpress.org/extend/plugins/wp-cms-post-control/">official WordPress plugin directory</a>.
-2. Decompress .zip file, retaining the complete, original file structure.
+1. Get the latest version of this plugin at the <a href="http://wordpress.org/extend/plugins/wp-cms-post-control/">official WordPress plugin directory</a>
+2. Decompress .zip file, retaining the complete, original file structure
 3. Upload the whole directory `wp-cms-post-control` and all containing files to your plugins directory - normally `/wp-content/plugins/`
 4. Activate the plugin through the 'Plugins' menu in WordPress
-5. Configure options through `Settings > Post Control`
+5. Configure options through `Settings > Post Control` and `Settings > Post Control Core`
 
 = Update existing install =
 
@@ -76,9 +79,13 @@ If your server supports it, the automatic plugin update feature of WordPress is 
 
 If you are updating via FTP, simply delete the entire folder called `wp-cms-post-control` from your plugins directory and replace with the newest version.
 
-**IMPORTANT** When you upgrade, you should go to the options page and re-save your Post Control options to refresh the settings. In most cases everything will be fine, but this will ensure that if there have been any updates to WordPress the plugin will refresh and update the relevant Post Control options.
+**IMPORTANT** When you upgrade, you may need to go to the options page and re-save your Post Control options to refresh the settings. In most cases everything will be fine, but this will ensure that if there have been any updates to WordPress the plugin will refresh and update the relevant Post Control options.
 
 == Frequently Asked Questions ==
+
+= How do I delete content and not use the trash? =
+
+In plugin version 2.9 a new control was created for setting the number of posts to keep in the trash - if you don't wish to use the trash functionality set this to 0 days.
 
 = I'm using version 2.8 and get a parse error on activation and can't activate the plugin? =
 
@@ -106,7 +113,7 @@ Please use version 2.4 and above to fix this glitch.
 
 = I'm using v2.2x with WordPress 2.9 (or below) - post options and/or other things don't work! =
 
-2.22 was the last version with WordPRess 2.9 conpatibility. If you are using an earlier version of WordPress you really should upgrade - you get lots of cool new stuff and a faster, smarter WordPress!
+2.22 was the last version with WordPRess 2.9 compatibility. If you are using an earlier version of WordPress you really should upgrade - you get lots of cool new stuff and a faster, smarter WordPress!
 
 = I'm using v2.x and I have some error messages appear at the top of the screen. =
 
@@ -130,7 +137,7 @@ The global options you set in the main WordPress options are used.
 
 = How do I delete the option(s) out of my database permanently? =
 
-In v2.1 and above just dectivate the plugin and then delete it using the WordPress plugin page option (not just of your server via FTP!). When the plugin is deleted through WordPress, it also deletes the option(s) from the database options table that are created.
+In v2.1 and above just deactivate the plugin and then delete it using the WordPress plugin page option (not just of your server via FTP!). When the plugin is deleted through WordPress, it also deletes the option(s) from the database options table that are created.
 
 = What happens if I activate/deactivate this plugin? =
 
@@ -162,6 +169,11 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 4. An example of a customised write/edit post - much simpler to use for all your users and clients!
 
 == Changelog ==
+
+= 2.9 =
+* 5th August 2014
+* REQUIRES WORDPRESS 3.6 OR ABOVE
+* Tested and verified with WordPress 3.9.1
 
 = 2.82 =
 * 24th March 2014
@@ -214,7 +226,7 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 = 2.22 =
 
 * 18th June 2010
-* LAST VERSION TO BE COMPATIBILE WITH WORDPRESS 2.9
+* LAST VERSION TO BE COMPATIBLE WITH WORDPRESS 2.9
 * WordPress 3.0 first pass compatibility
 
 = 2.21 =
@@ -285,7 +297,7 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Fix the bug introduced in v1.02 that broke the form fields
 * After comments feedback, changed and documented admin control
 
-= v1.02  =
+= v1.02 =
 * 3rd September 2008
 * Bug catches, may help plugin compatibility on different servers
 
@@ -294,12 +306,12 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 * Option to insert message panel
 * General tidying on admin page
 
-= v1.0  =
+= v1.0 =
 * 1st August 2008
 * Option to disable post and page revisions
 * Option to disable autosaves
 
-= v0.4  =
+= v0.4 =
 1st August 2008
 * Option to select uploader (Flash or standard)
 * Option to hide revisions control
@@ -310,13 +322,16 @@ What began as inherited code has now been completely re-written in v2.0 to use n
 
 = v0.3 =
 * 28th July 2008
-* Introduced Admin user control.
+* Introduced Admin user control
 
 = v0.2 =
 * 26th July 2008
-* Included clean-up of database on de-activation.
+* Included clean-up of database on de-activation
 
 == Upgrade Notice ==
+
+= 2.9 =
+REQUIRES WORDPRESS 3.6 or above, verified working with WordPress v3.9x - introduces new trash control!
 
 = 2.82 =
 REQUIRES WORDPRESS 3.6 or above, verified working with WordPress v3.8x
